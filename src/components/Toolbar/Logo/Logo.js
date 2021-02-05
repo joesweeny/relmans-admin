@@ -9,7 +9,7 @@ const LogoWrapper = styled.img`
 `;
 
 const logo = () => {
-  return <LogoWrapper src={brand} />
-}
+  return <LogoWrapper src={brand} />;
+};
 
 export default logo;

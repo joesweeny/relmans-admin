@@ -11,7 +11,7 @@ const ToolbarWrapper = styled.div`
   background-color: #3d604c;
   height: 80px;
   width: 100%;
-  
+
   @media (max-width: 768px) {
     justify-content: center;
   }
@@ -23,7 +23,7 @@ const toolbar = () => {
       <Logo />
       <Navigation />
     </ToolbarWrapper>
-  )
-}
+  );
+};
 
 export default toolbar;
