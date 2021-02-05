@@ -7,7 +7,7 @@ const NavigationWrapper = styled.div`
   justify-content: space-between;
   align-items: center;
   max-width: 100%;
-  margin-right: 30px;
+  padding-right: 30px;
   text-transform: uppercase;
   color: #ffffff;
   font-weight: 600;
@@ -19,6 +19,10 @@ const NavigationWrapper = styled.div`
     &:hover {
       color: #f1943c;
     }
+  }
+  
+  @media (max-width: 768px) {
+    display: none;
   }
 `;
 

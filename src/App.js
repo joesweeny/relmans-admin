@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import Routes from './components/Routes/Routes';
 import ToolBar from './components/Toolbar/Toolbar';
 
 const Container = styled.div`
@@ -8,17 +9,13 @@ const Container = styled.div`
   flex-direction: column;
   height: 100vh;
   max-width: 100vw;
-
-  @media (max-width: 768px) {
-    flex-direction: column;
-  }
 `;
 
 const App = () => {
   return (
     <Container>
       <ToolBar />
-      This is the Relmans dashboard
+      <Routes />
     </Container>
   );
 }

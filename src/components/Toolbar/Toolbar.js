@@ -10,6 +10,11 @@ const ToolbarWrapper = styled.div`
   justify-content: space-between;
   background-color: #3d604c;
   height: 80px;
+  width: 100%;
+  
+  @media (max-width: 768px) {
+    justify-content: center;
+  }
 `;
 
 const toolbar = () => {
