@@ -1,12 +1,12 @@
 import React from 'react';
 import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
 
-import Home from '../Home/Home';
+import ProductList from '../ProductList/ProductList';
 
 const routes = () => (
   <BrowserRouter>
     <Switch>
-      <Route path="/" exact component={Home} />
+      <Route path="/" exact component={ProductList} />
       <Redirect to="/" />
     </Switch>
   </BrowserRouter>
