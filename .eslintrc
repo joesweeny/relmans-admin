@@ -1,0 +1,33 @@
+{
+  "env": {
+    "jest": true
+  },
+  "extends": [
+    "airbnb",
+    "airbnb/hooks",
+    "plugin:jsx-a11y/recommended",
+    "plugin:prettier/recommended",
+    "prettier/react",
+    "react-app"
+  ],
+  "ignorePatterns": [
+    "config/*",
+    "public/*",
+    "scripts/*",
+    "src/serviceWorker.js"
+  ],
+  "parser": "babel-eslint",
+  "plugins": [
+    "jsx-a11y",
+    "prettier",
+    "react"
+  ],
+  "rules": {
+    "import/no-extraneous-dependencies": ["error", {"devDependencies": true}],
+    "no-use-before-define": [ 2, { "functions": false } ],
+    "no-underscore-dangle" : [0, "always"],
+    "react/jsx-filename-extension": ["warn", { "extensions": [".js", ".jsx"] }],
+    "prettier/prettier": ["error"],
+    "space-in-parens": [ 0, "always" ]
+  }
+}
