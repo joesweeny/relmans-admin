@@ -18,7 +18,6 @@ const ProductListItemWrapper = styled.div`
   width: 60%;
   text-align: left;
   border-bottom: 1px solid #bbb7b7;
-  font-weight: 600;
 
   :first-child {
     border-top: 1px solid #bbb7b7;

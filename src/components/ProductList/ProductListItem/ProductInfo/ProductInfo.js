@@ -28,8 +28,4 @@ productInfo.propTypes = {
   width: string.isRequired,
 };
 
-productInfo.defaultProps = {
-  align: 'center',
-};
-
 export default productInfo;
