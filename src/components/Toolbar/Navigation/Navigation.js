@@ -11,16 +11,16 @@ const NavigationWrapper = styled.div`
   text-transform: uppercase;
   color: #ffffff;
   font-weight: 600;
-  
+
   p {
     padding: 0 20px 0 20px;
     cursor: pointer;
-    
+
     &:hover {
       color: #f1943c;
     }
   }
-  
+
   @media (max-width: 768px) {
     display: none;
   }
@@ -32,7 +32,7 @@ const navigation = () => {
       <p>Products</p>
       <p>Orders</p>
     </NavigationWrapper>
-  )
-}
+  );
+};
 
 export default navigation;

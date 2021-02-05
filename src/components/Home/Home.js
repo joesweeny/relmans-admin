@@ -10,11 +10,7 @@ const HomeWrapper = styled.div`
 `;
 
 const home = () => {
-  return (
-    <HomeWrapper>
-      Relmans Admin
-    </HomeWrapper>
-  );
-}
+  return <HomeWrapper>Relmans Admin</HomeWrapper>;
+};
 
 export default home;
