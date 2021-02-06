@@ -21,7 +21,7 @@ const ProductListWrapper = styled.div`
 `;
 
 const ProductList = () => {
-  const { products, loading } = useFetchesProducts();
+  const { products, loading } = useFetchesProducts(null);
 
   return (
     <Loader loading={loading}>
