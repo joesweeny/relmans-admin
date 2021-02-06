@@ -4,12 +4,14 @@ import styled from 'styled-components';
 
 const ProductImageWrapper = styled.img`
   height: 80px;
+  width: 80px;
   cursor: pointer;
   padding: 5px;
   border-radius: 10px;
 
   @media (min-width: 959px) {
     height: 120px;
+    width: 120px;
   }
 `;
 
