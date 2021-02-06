@@ -7,6 +7,10 @@ const ProductInfoWrapper = styled.div`
   text-align: left;
   width: 100%;
   font-size: 14px;
+
+  @media (min-width: 959px) {
+    font-size: 20px;
+  }
 `;
 
 const productInfo = (props) => {

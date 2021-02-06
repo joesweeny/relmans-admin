@@ -10,6 +10,10 @@ const ProductStatusWrapper = styled.div`
   font-size: 14px;
   color: ${(prop) => prop.color};
   text-align: left;
+
+  @media (min-width: 959px) {
+    font-size: 18px;
+  }
 `;
 
 const productStatus = (props) => {

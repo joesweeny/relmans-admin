@@ -23,7 +23,7 @@ const ProductListItemWrapper = styled.div`
   margin: 5px 0 5px 0;
 
   @media (min-width: 959px) {
-    width: 25%;
+    width: 33%;
     margin: 10px;
   }
 `;
@@ -33,6 +33,10 @@ const ProductInformationWrapper = styled.div`
   flex-direction: column;
   justify-content: space-between;
   width: 100%;
+
+  @media (min-width: 959px) {
+    margin-left: 15px;
+  }
 `;
 
 const ProductListItem = (props) => {

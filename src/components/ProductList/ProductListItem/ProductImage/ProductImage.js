@@ -7,6 +7,10 @@ const ProductImageWrapper = styled.img`
   cursor: pointer;
   padding: 5px;
   border-radius: 10px;
+
+  @media (min-width: 959px) {
+    height: 120px;
+  }
 `;
 
 const productImage = (props) => {

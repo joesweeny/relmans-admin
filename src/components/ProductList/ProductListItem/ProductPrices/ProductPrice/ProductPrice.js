@@ -12,6 +12,10 @@ const ProductPriceWrapper = styled.div`
   p {
     padding-right: 5px;
   }
+
+  @media (min-width: 959px) {
+    font-size: 18px;
+  }
 `;
 
 const productPrice = (props) => {
