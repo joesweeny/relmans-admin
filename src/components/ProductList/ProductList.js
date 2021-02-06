@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 import Loader from '../Loader/Loader';
 import ProductListItem from './ProductListItem/ProductListItem';
+import ProductSearch from './ProductSearch/ProductSearch';
 import useFetchesProducts from '../../hooks/useFetchesProducts';
 
 const ProductListWrapper = styled.div`
@@ -21,12 +22,23 @@ const ProductListWrapper = styled.div`
 `;
 
 const ProductList = () => {
-  const { products, loading } = useFetchesProducts(null);
+  const { products, loading } = useFetchesProducts();
+  const [search, setSearch] = useState('');
+  const [filteredProducts, setFilteredProducts] = useState([]);
+
+  useEffect(() => {
+    setFilteredProducts(
+      products.filter((p) =>
+        p.name.toLowerCase().includes(search.toLowerCase())
+      )
+    );
+  }, [search, products]);
 
   return (
     <Loader loading={loading}>
+      <ProductSearch input={search} update={setSearch} />
       <ProductListWrapper>
-        {products.map((p) => (
+        {filteredProducts.map((p) => (
           <ProductListItem product={p} key={p.id} />
         ))}
       </ProductListWrapper>
