@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 import Routes from './components/Routes/Routes';
 import ToolBar from './components/Toolbar/Toolbar';
+import ErrorBoundary from './components/ErrorBoundary/ErrorBoundary';
 
 const Container = styled.div`
   display: flex;
@@ -15,7 +16,9 @@ const App = () => {
   return (
     <Container>
       <ToolBar />
-      <Routes />
+      <ErrorBoundary>
+        <Routes />
+      </ErrorBoundary>
     </Container>
   );
 };

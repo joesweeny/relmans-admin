@@ -1,7 +1,8 @@
-import products from '../assets/products';
+import axios from './axios-client';
 
 const getProducts = async () => {
-  return products;
+  const response = await axios.get('/product');
+  return response.data.data.products;
 };
 
 export default getProducts;
