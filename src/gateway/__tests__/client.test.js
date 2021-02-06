@@ -40,10 +40,12 @@ describe('getProducts', () => {
     axiosMock.get = jest
       .fn()
       .mockImplementationOnce(() => Promise.resolve(data));
-    await getProducts();
+    await getProducts('mush');
 
     await expect(axiosMock.get).toHaveBeenCalledTimes(1);
-    await expect(axiosMock.get).toHaveBeenCalledWith('/product');
+    await expect(axiosMock.get).toHaveBeenCalledWith('/product', {
+      params: { search: 'mush' },
+    });
   });
 
   it('throws error if error thrown from API', async () => {
