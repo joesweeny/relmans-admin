@@ -3,9 +3,10 @@ import { string } from 'prop-types';
 import styled from 'styled-components';
 
 const ProductImageWrapper = styled.img`
-  width: 50px;
-  height: 50px;
-  margin: 10px 20px 10px 30px;
+  height: 80px;
+  cursor: pointer;
+  padding: 5px;
+  border-radius: 10px;
 `;
 
 const productImage = (props) => {

@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Muli');
+@import url('https://fonts.googleapis.com/css2?family=Dosis:wght@600&display=swap');
 
 /* Box sizing rules */
 *,
@@ -81,8 +81,8 @@ select {
 }
 
 body {
-  background-color: #ffffff;
-  font-family: Muli, serif;
+  background-color: #cecbcbee;
+  font-family: 'Dosis', sans-serif;
   font-style: normal;
   font-weight: normal;
   font-size: 20px;

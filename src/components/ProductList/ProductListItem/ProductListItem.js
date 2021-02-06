@@ -1,63 +1,69 @@
 import React from 'react';
-import { number, shape, string } from 'prop-types';
+import { arrayOf, number, shape, string } from 'prop-types';
 import styled from 'styled-components';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faStar } from '@fortawesome/free-solid-svg-icons';
 
 import ProductImage from './ProductImage/ProductImage';
 import ProductInfo from './ProductInfo/ProductInfo';
-import ProductPrice from './ProductPrice/ProductPrice';
 import ProductStatus from './ProductStatus/ProductStatus';
-import capitalize from '../../../utility/strings';
+import ProductPrices from './ProductPrices/ProductPrices';
 
 const ProductListItemWrapper = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  height: fit-content;
   align-items: center;
-  width: 60%;
-  text-align: left;
-  border-bottom: 1px solid #bbb7b7;
+  background-color: #ffffff;
+  border-radius: 5px;
+  box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.23);
+  color: black;
+  font-weight: 600;
+  width: 100%;
+  padding: 0;
+  margin: 5px 0 5px 0;
 
-  :first-child {
-    border-top: 1px solid #bbb7b7;
-  }
-
-  svg {
-    color: #b4bfaa;
-    margin: 0 20px 0 10px;
-    cursor: pointer;
+  @media (min-width: 959px) {
+    width: 25%;
+    margin: 10px;
   }
 `;
 
-const productListItem = (props) => {
-  const { product, price } = props;
+const ProductInformationWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+`;
+
+const ProductListItem = (props) => {
+  const { product } = props;
 
   return (
     <ProductListItemWrapper>
       <ProductImage id={product.id} name={product.name} />
-      <ProductInfo width="35%" align="flex-start" title={product.name} />
-      <ProductInfo width="10%" title={price.size} />
-      <ProductInfo width="20%" title={capitalize(price.measurement)} />
-      <ProductPrice width="15%" price={price.value} />
-      <ProductStatus width="25%" title={product.status} />
-      <FontAwesomeIcon icon={faStar} size="1x" />
+      <ProductInformationWrapper>
+        <ProductInfo title={product.name} />
+        <ProductStatus status={product.status} />
+      </ProductInformationWrapper>
+      <ProductPrices prices={product.prices} />
     </ProductListItemWrapper>
   );
 };
 
-productListItem.propTypes = {
+ProductListItem.propTypes = {
   product: shape({
     id: string.isRequired,
     name: string.isRequired,
     status: string.isRequired,
-  }).isRequired,
-  price: shape({
-    id: string.isRequired,
-    value: number.isRequired,
-    measurement: string.isRequired,
-    size: number.isRequired,
+    prices: arrayOf(
+      shape({
+        id: string.isRequired,
+        value: number.isRequired,
+        size: number.isRequired,
+        measurement: string.isRequired,
+      })
+    ).isRequired,
   }).isRequired,
 };
 
-export default productListItem;
+export default ProductListItem;

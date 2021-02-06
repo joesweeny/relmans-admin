@@ -8,9 +8,16 @@ import useFetchesProducts from '../../hooks/useFetchesProducts';
 const ProductListWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
-  width: 100%;
-  margin-top: 80px;
+  justify-content: space-between;
+  align-content: center;
+  margin: 10px;
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+  }
 `;
 
 const ProductList = () => {
@@ -19,11 +26,9 @@ const ProductList = () => {
   return (
     <Loader loading={loading}>
       <ProductListWrapper>
-        {products.map((p) => {
-          return p.prices.map((pr) => {
-            return <ProductListItem product={p} price={pr} key={pr.id} />;
-          });
-        })}
+        {products.map((p) => (
+          <ProductListItem product={p} key={p.id} />
+        ))}
       </ProductListWrapper>
     </Loader>
   );
