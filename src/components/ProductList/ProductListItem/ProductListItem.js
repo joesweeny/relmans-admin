@@ -1,5 +1,5 @@
-import React from 'react';
-import { arrayOf, number, shape, string } from 'prop-types';
+import React, { useState } from 'react';
+import { arrayOf, func, number, shape, string } from 'prop-types';
 import styled from 'styled-components';
 
 import ProductImage from './ProductImage/ProductImage';
@@ -54,7 +54,12 @@ const ProductInformationWrapper = styled.div`
 `;
 
 const ProductListItem = (props) => {
-  const { product } = props;
+  const { product, reload } = props;
+  const [isEditing, setIsEditing] = useState(false);
+
+  const toggleEdit = () => {
+    setIsEditing(!isEditing);
+  };
 
   return (
     <ProductListItemWrapper>
@@ -62,11 +67,17 @@ const ProductListItem = (props) => {
         <ProductImage id={product.id} name={product.name} />
         <ProductInformationWrapper>
           <ProductInfo title={product.name} />
-          <ProductStatus status={product.status} />
+          <ProductStatus
+            id={product.id}
+            isEditing={isEditing}
+            status={product.status}
+            reload={reload}
+            toggle={toggleEdit}
+          />
         </ProductInformationWrapper>
         <ProductPrices prices={product.prices} />
       </ProductDataWrapper>
-      <ProductToggle />
+      <ProductToggle isEditing={isEditing} toggle={toggleEdit} />
     </ProductListItemWrapper>
   );
 };
@@ -85,6 +96,7 @@ ProductListItem.propTypes = {
       })
     ).isRequired,
   }).isRequired,
+  reload: func.isRequired,
 };
 
 export default ProductListItem;

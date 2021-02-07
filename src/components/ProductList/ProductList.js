@@ -22,7 +22,7 @@ const ProductListWrapper = styled.div`
 `;
 
 const ProductList = () => {
-  const { products, loading } = useFetchesProducts();
+  const { products, loading, reload } = useFetchesProducts();
   const [search, setSearch] = useState('');
   const [filteredProducts, setFilteredProducts] = useState([]);
 
@@ -39,7 +39,7 @@ const ProductList = () => {
       <ProductSearch input={search} update={setSearch} />
       <ProductListWrapper>
         {filteredProducts.map((p) => (
-          <ProductListItem product={p} key={p.id} />
+          <ProductListItem product={p} key={p.id} reload={reload} />
         ))}
       </ProductListWrapper>
     </Loader>
