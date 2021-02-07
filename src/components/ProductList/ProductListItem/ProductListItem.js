@@ -6,10 +6,11 @@ import ProductImage from './ProductImage/ProductImage';
 import ProductInfo from './ProductInfo/ProductInfo';
 import ProductStatus from './ProductStatus/ProductStatus';
 import ProductPrices from './ProductPrices/ProductPrices';
+import ProductToggle from './ProductToggle/ProductToggle';
 
 const ProductListItemWrapper = styled.div`
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-between;
   height: fit-content;
   align-items: center;
@@ -23,8 +24,21 @@ const ProductListItemWrapper = styled.div`
   margin: 5px 0 5px 0;
 
   @media (min-width: 959px) {
-    width: 33%;
+    flex-direction: row;
+    width: 60%;
     margin: 10px;
+  }
+`;
+
+const ProductDataWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  align-items: center;
+
+  @media (min-width: 959px) {
+    margin-left: 15px;
   }
 `;
 
@@ -44,12 +58,15 @@ const ProductListItem = (props) => {
 
   return (
     <ProductListItemWrapper>
-      <ProductImage id={product.id} name={product.name} />
-      <ProductInformationWrapper>
-        <ProductInfo title={product.name} />
-        <ProductStatus status={product.status} />
-      </ProductInformationWrapper>
-      <ProductPrices prices={product.prices} />
+      <ProductDataWrapper>
+        <ProductImage id={product.id} name={product.name} />
+        <ProductInformationWrapper>
+          <ProductInfo title={product.name} />
+          <ProductStatus status={product.status} />
+        </ProductInformationWrapper>
+        <ProductPrices prices={product.prices} />
+      </ProductDataWrapper>
+      <ProductToggle />
     </ProductListItemWrapper>
   );
 };

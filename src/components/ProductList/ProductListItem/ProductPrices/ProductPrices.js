@@ -10,6 +10,10 @@ const ProductPricesWrapper = styled.div`
   justify-content: flex-start;
   width: 100%;
   margin-right: 10px;
+
+  @media (min-width: 768px) {
+    margin-right: 10px;
+  }
 `;
 
 const ProductPrices = (props) => {
