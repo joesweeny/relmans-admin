@@ -1,6 +1,10 @@
 import axiosMock from '../axios-client';
 
-import getProducts from '../client';
+import {
+  getProducts,
+  updateProductPrice,
+  updateProductStatus,
+} from '../client';
 
 describe('getProducts', () => {
   const products = [
@@ -55,5 +59,70 @@ describe('getProducts', () => {
       .mockImplementationOnce(() => Promise.reject(new Error(error)));
 
     await expect(getProducts()).rejects.toThrow(error);
+  });
+});
+
+describe('updateProductStatus', () => {
+  afterEach(() => {
+    jest.resetAllMocks();
+  });
+
+  it('updates product status via API call', async () => {
+    axiosMock.patch = jest
+      .fn()
+      .mockImplementationOnce(() => Promise.resolve({}));
+
+    await updateProductStatus(
+      '43d4c5a2-abee-4ae4-8490-c268e9bd8760',
+      'IN_STOCK'
+    );
+
+    await expect(axiosMock.patch).toHaveBeenCalledTimes(1);
+    await expect(axiosMock.patch).toHaveBeenCalledWith(
+      '/product/43d4c5a2-abee-4ae4-8490-c268e9bd8760',
+      {
+        status: 'IN_STOCK',
+      }
+    );
+  });
+
+  it('throws error if error thrown from API', async () => {
+    const error = 'Invalid Argument';
+    axiosMock.patch = jest
+      .fn()
+      .mockImplementationOnce(() => Promise.reject(new Error(error)));
+
+    await expect(updateProductStatus()).rejects.toThrow(error);
+  });
+});
+
+describe('updateProductPrice', () => {
+  afterEach(() => {
+    jest.resetAllMocks();
+  });
+
+  it('updates product price via API call', async () => {
+    axiosMock.patch = jest
+      .fn()
+      .mockImplementationOnce(() => Promise.resolve({}));
+
+    await updateProductPrice('43d4c5a2-abee-4ae4-8490-c268e9bd8760', 100);
+
+    await expect(axiosMock.patch).toHaveBeenCalledTimes(1);
+    await expect(axiosMock.patch).toHaveBeenCalledWith(
+      '/price/43d4c5a2-abee-4ae4-8490-c268e9bd8760',
+      {
+        value: 100,
+      }
+    );
+  });
+
+  it('throws error if error thrown from API', async () => {
+    const error = 'Invalid Argument';
+    axiosMock.patch = jest
+      .fn()
+      .mockImplementationOnce(() => Promise.reject(new Error(error)));
+
+    await expect(updateProductPrice()).rejects.toThrow(error);
   });
 });

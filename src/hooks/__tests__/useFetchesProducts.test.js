@@ -1,7 +1,7 @@
 import { renderHook } from '@testing-library/react-hooks';
 import useAsyncError from '../useAsyncError';
 
-import getProducts from '../../gateway/client';
+import { getProducts } from '../../gateway/client';
 import useFetchesProducts from '../useFetchesProducts';
 
 jest.mock('../../gateway/client');
