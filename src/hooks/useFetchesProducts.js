@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-import getProducts from '../gateway/client';
+import { getProducts } from '../gateway/client';
 import useAsyncError from './useAsyncError';
 
 const useFetchesProducts = (search) => {
