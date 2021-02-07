@@ -14,9 +14,11 @@ const ProductPriceWrapper = styled.div`
   }
 
   @media (min-width: 959px) {
-    font-size: 18px;
+    font-size: 22px;
 
     p {
+      padding: 5px;
+
       :last-child {
         padding-left: 10px;
       }

@@ -12,9 +12,9 @@ const ProductListWrapper = styled.div`
   justify-content: space-between;
   align-content: center;
   margin: 10px;
+  padding-bottom: 30px;
 
   @media (min-width: 768px) {
-    flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
     align-content: center;
