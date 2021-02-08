@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
 
+import Loader from '../../Loader/Loader';
 import ProductListItem from './ProductListItem/ProductListItem';
 import { ProductContext } from '../../../context/ProductContext';
 
@@ -20,13 +21,15 @@ const ProductListWrapper = styled.div`
 `;
 
 const ProductList = () => {
-  const { filteredProducts } = useContext(ProductContext);
+  const { filteredProducts, loading } = useContext(ProductContext);
 
   return (
     <ProductListWrapper>
-      {filteredProducts.map((p) => (
-        <ProductListItem product={p} key={p.id} />
-      ))}
+      <Loader loading={loading}>
+        {filteredProducts.map((p) => (
+          <ProductListItem product={p} key={p.id} />
+        ))}
+      </Loader>
     </ProductListWrapper>
   );
 };
