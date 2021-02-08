@@ -5,7 +5,7 @@ import ProductContextProvider from '../../context/ProductContext';
 import ProductList from './ProductList/ProductList';
 import ProductSearch from './ProductSearch/ProductSearch';
 
-const ProductContainerWrapper = styled.div`
+const ProductWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -23,10 +23,10 @@ const ProductContainerWrapper = styled.div`
 const Product = () => {
   return (
     <ProductContextProvider>
-      <ProductContainerWrapper>
+      <ProductWrapper>
         <ProductSearch />
         <ProductList />
-      </ProductContainerWrapper>
+      </ProductWrapper>
     </ProductContextProvider>
   );
 };
