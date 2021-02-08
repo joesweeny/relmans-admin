@@ -12,7 +12,7 @@ const useFetchesProducts = () => {
   useEffect(() => {
     setLoading(true);
 
-    getProducts(null)
+    getProducts()
       .then((p) => {
         setProducts(p);
         setLoading(false);

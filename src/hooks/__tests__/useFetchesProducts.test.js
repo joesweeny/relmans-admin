@@ -28,7 +28,7 @@ describe('useFetchesProducts', () => {
     getProducts.mockImplementationOnce(() => Promise.resolve(products));
 
     const { result, waitForNextUpdate } = renderHook(() =>
-      useFetchesProducts(null)
+      useFetchesProducts()
     );
 
     await waitForNextUpdate();
@@ -41,7 +41,7 @@ describe('useFetchesProducts', () => {
     getProducts.mockImplementationOnce(() => Promise.resolve([]));
 
     const { result, waitForNextUpdate } = renderHook(() =>
-      useFetchesProducts(null)
+      useFetchesProducts()
     );
 
     expect(result.current.loading).toBe(true);
@@ -59,7 +59,7 @@ describe('useFetchesProducts', () => {
       throw error;
     });
 
-    const { result } = renderHook(() => useFetchesProducts(null));
+    const { result } = renderHook(() => useFetchesProducts());
 
     expect(result.error).toEqual(error);
   });
