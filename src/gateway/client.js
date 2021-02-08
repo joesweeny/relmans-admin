@@ -1,7 +1,7 @@
 import axios from './axios-client';
 
-export const getProducts = async (search) => {
-  const response = await axios.get('/product', { params: { search } });
+export const getProducts = async () => {
+  const response = await axios.get('/product');
   return response.data.data.products;
 };
 
