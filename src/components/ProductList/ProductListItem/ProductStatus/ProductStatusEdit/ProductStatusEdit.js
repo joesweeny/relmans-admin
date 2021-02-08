@@ -22,7 +22,7 @@ const ProductStatusEdit = (props) => {
 
   const updateStatus = (e) => {
     updateProductStatus(id, e).then(() => {
-      reload();
+      reload(true);
       toggle();
     });
   };
