@@ -9,7 +9,7 @@ const ProductSearchWrapper = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;
-  align-items: center;import { func, string } from 'prop-types';
+  align-items: center;
 
   width: 100%;
   margin: 20px 0 5px 0;
