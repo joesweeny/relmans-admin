@@ -1,9 +1,9 @@
 import React from 'react';
-import { bool, number, shape, string } from 'prop-types';
+import { bool, func, number, shape, string } from 'prop-types';
 import styled from 'styled-components';
 
 import ProductPriceEdit from './ProductPriceEdit/ProductPriceEdit';
-import capitalize from '../../../../../../utility/strings';
+import displayMeasurement from '../../../../../../utility/display';
 
 const ProductPriceWrapper = styled.div`
   display: flex;
@@ -13,7 +13,13 @@ const ProductPriceWrapper = styled.div`
   width: 100%;
 
   p {
-    padding-right: 5px;
+    padding-right: 3px;
+
+    :last-child {
+      font-size: 18px;
+      padding-left: 10px;
+      padding-right: 10px;
+    }
   }
 
   @media (min-width: 959px) {
@@ -23,22 +29,32 @@ const ProductPriceWrapper = styled.div`
       padding: 5px;
 
       :last-child {
-        padding-left: 10px;
+        font-size: 26px;
+        padding-left: 20px;
+        padding-right: 30px;
       }
     }
   }
 `;
 
 const productPrice = (props) => {
-  const { isEditing, price } = props;
+  const { isEditing, price, productId, toggle } = props;
   const value = (price.value / 100).toFixed(2);
 
   return (
     <ProductPriceWrapper>
       <p>{price.size}</p>
-      <p>{capitalize(price.measurement)}</p>
-      <p>£</p>
-      {isEditing ? <ProductPriceEdit price={value} /> : <p>{value}</p>}
+      <p>{displayMeasurement(price.measurement)}</p>
+      {isEditing ? (
+        <ProductPriceEdit
+          value={value}
+          productId={productId}
+          priceId={price.id}
+          toggle={toggle}
+        />
+      ) : (
+        <p>£ {value}</p>
+      )}
     </ProductPriceWrapper>
   );
 };
@@ -50,6 +66,8 @@ productPrice.propTypes = {
     size: number.isRequired,
     measurement: string.isRequired,
   }),
+  productId: string.isRequired,
+  toggle: func.isRequired,
 };
 
 export default productPrice;
