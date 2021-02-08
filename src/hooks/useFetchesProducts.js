@@ -24,8 +24,8 @@ const useFetchesProducts = () => {
 
   return {
     products,
+    updateProducts: setProducts,
     loading,
-    reload: setLoad,
   };
 };
 

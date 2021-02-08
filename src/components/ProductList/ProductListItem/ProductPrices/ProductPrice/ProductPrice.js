@@ -1,6 +1,8 @@
 import React from 'react';
-import { number, shape, string } from 'prop-types';
+import { bool, number, shape, string } from 'prop-types';
 import styled from 'styled-components';
+
+import ProductPriceEdit from './ProductPriceEdit/ProductPriceEdit';
 import capitalize from '../../../../../utility/strings';
 
 const ProductPriceWrapper = styled.div`
@@ -8,6 +10,7 @@ const ProductPriceWrapper = styled.div`
   flex-direction: row;
   justify-content: flex-end;
   font-size: 14px;
+  width: 100%;
 
   p {
     padding-right: 5px;
@@ -27,18 +30,21 @@ const ProductPriceWrapper = styled.div`
 `;
 
 const productPrice = (props) => {
-  const { price } = props;
+  const { isEditing, price } = props;
+  const value = (price.value / 100).toFixed(2);
 
   return (
     <ProductPriceWrapper>
       <p>{price.size}</p>
       <p>{capitalize(price.measurement)}</p>
-      <p>£ {(price.value / 100).toFixed(2)}</p>
+      <p>£</p>
+      {isEditing ? <ProductPriceEdit price={value} /> : <p>{value}</p>}
     </ProductPriceWrapper>
   );
 };
 
 productPrice.propTypes = {
+  isEditing: bool.isRequired,
   price: shape({
     value: number.isRequired,
     size: number.isRequired,

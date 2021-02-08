@@ -22,7 +22,7 @@ const ProductListWrapper = styled.div`
 `;
 
 const ProductList = () => {
-  const { products, loading, reload } = useFetchesProducts();
+  const { products, loading, updateProducts } = useFetchesProducts();
   const [search, setSearch] = useState('');
   const [filteredProducts, setFilteredProducts] = useState([]);
 
@@ -34,12 +34,20 @@ const ProductList = () => {
     );
   }, [search, products]);
 
+  const updateProduct = (product) => {
+    const pr = products.filter((p) => p.id !== product.id);
+    const newProducts = [...pr, product].sort((a, b) =>
+      a.name.localeCompare(b.name)
+    );
+    updateProducts(newProducts);
+  };
+
   return (
     <Loader loading={loading}>
       <ProductSearch input={search} update={setSearch} />
       <ProductListWrapper>
         {filteredProducts.map((p) => (
-          <ProductListItem product={p} key={p.id} reload={reload} />
+          <ProductListItem product={p} key={p.id} reload={updateProduct} />
         ))}
       </ProductListWrapper>
     </Loader>
