@@ -3,7 +3,7 @@ import { bool, number, shape, string } from 'prop-types';
 import styled from 'styled-components';
 
 import ProductPriceEdit from './ProductPriceEdit/ProductPriceEdit';
-import capitalize from '../../../../../utility/strings';
+import capitalize from '../../../../../../utility/strings';
 
 const ProductPriceWrapper = styled.div`
   display: flex;

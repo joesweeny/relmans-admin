@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { string } from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
-import { updateProductPrice } from '../../../../../../gateway/client';
+import { updateProductPrice } from '../../../../../../../gateway/client';
 
 const ProductPriceEditWrapper = styled.div`
   display: flex;
