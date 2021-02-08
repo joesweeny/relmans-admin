@@ -1,5 +1,5 @@
 import React from 'react';
-import { arrayOf, bool, number, shape, string } from 'prop-types';
+import { arrayOf, bool, func, number, shape, string } from 'prop-types';
 import styled from 'styled-components';
 
 import ProductPrice from './ProductPrice/ProductPrice';
@@ -17,12 +17,18 @@ const ProductPricesWrapper = styled.div`
 `;
 
 const ProductPrices = (props) => {
-  const { isEditing, prices } = props;
+  const { isEditing, prices, productId, toggle } = props;
 
   return (
     <ProductPricesWrapper>
       {prices.map((p) => (
-        <ProductPrice isEditing={isEditing} price={p} key={p.id} />
+        <ProductPrice
+          isEditing={isEditing}
+          price={p}
+          productId={productId}
+          key={p.id}
+          toggle={toggle}
+        />
       ))}
     </ProductPricesWrapper>
   );
@@ -38,6 +44,8 @@ ProductPrices.propTypes = {
       measurement: string.isRequired,
     })
   ).isRequired,
+  productId: string.isRequired,
+  toggle: func.isRequired,
 };
 
 export default ProductPrices;
