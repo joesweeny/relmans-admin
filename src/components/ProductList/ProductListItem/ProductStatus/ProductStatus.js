@@ -1,6 +1,8 @@
 import React from 'react';
-import { string } from 'prop-types';
+import { bool, func, string } from 'prop-types';
 import styled from 'styled-components';
+
+import ProductStatusEdit from './ProductStatusEdit/ProductStatusEdit';
 
 const ProductStatusWrapper = styled.div`
   display: flex;
@@ -17,7 +19,8 @@ const ProductStatusWrapper = styled.div`
 `;
 
 const productStatus = (props) => {
-  const { status } = props;
+  const { id, isEditing, reload, status, toggle } = props;
+
   let color = 'green';
 
   if (status === 'OUT_OF_STOCK') {
@@ -30,13 +33,26 @@ const productStatus = (props) => {
 
   return (
     <ProductStatusWrapper color={color}>
-      {status.replace(/[_-]/g, ' ')}
+      {isEditing ? (
+        <ProductStatusEdit
+          id={id}
+          reload={reload}
+          status={status}
+          toggle={toggle}
+        />
+      ) : (
+        status.replace(/[_-]/g, ' ')
+      )}
     </ProductStatusWrapper>
   );
 };
 
 productStatus.propTypes = {
+  id: string.isRequired,
+  isEditing: bool.isRequired,
+  reload: func.isRequired,
   status: string.isRequired,
+  toggle: func.isRequired,
 };
 
 export default productStatus;

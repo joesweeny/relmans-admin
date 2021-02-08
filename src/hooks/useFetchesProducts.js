@@ -3,25 +3,29 @@ import { useEffect, useState } from 'react';
 import { getProducts } from '../gateway/client';
 import useAsyncError from './useAsyncError';
 
-const useFetchesProducts = (search) => {
+const useFetchesProducts = () => {
   const [products, setProducts] = useState([]);
+  const [load, setLoad] = useState(true);
   const [loading, setLoading] = useState(false);
   const throwError = useAsyncError();
 
   useEffect(() => {
     setLoading(true);
 
-    getProducts(search)
+    getProducts(null)
       .then((p) => {
         setProducts(p);
         setLoading(false);
       })
       .catch((e) => throwError(e));
-  }, [search, setLoading, setProducts, throwError]);
+
+    return () => setLoad(false);
+  }, [load, setLoad, setLoading, setProducts, throwError]);
 
   return {
     products,
     loading,
+    reload: setLoad,
   };
 };
 

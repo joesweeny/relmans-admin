@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { bool, func } from 'prop-types';
 
 const ProductToggleWrapper = styled.div`
   display: flex;
@@ -15,10 +16,6 @@ const ProductToggleWrapper = styled.div`
   p {
     cursor: pointer;
     padding: 0 10px 0 10px;
-
-    &:hover {
-      color: #f1943c;
-    }
   }
 
   @media (min-width: 959px) {
@@ -41,13 +38,36 @@ const ProductToggleWrapper = styled.div`
   }
 `;
 
-const ProductToggle = () => {
+const EditToggle = styled.p`
+  color: ${(props) => (props.isEditing ? '#f1943c' : 'white')};
+
+  &:hover {
+    color: ${(props) => (!props.isEditing ? '#f1943c' : 'white')};
+  }
+`;
+
+const InSeasonToggle = styled.p`
+  &:hover {
+    color: '#f1943c';
+  }
+`;
+
+const ProductToggle = (props) => {
+  const { isEditing, toggle } = props;
+
   return (
     <ProductToggleWrapper>
-      <p>Edit</p>
-      <p>In Season</p>
+      <EditToggle isEditing={isEditing} onClick={() => toggle()}>
+        Edit
+      </EditToggle>
+      <InSeasonToggle>In Season</InSeasonToggle>
     </ProductToggleWrapper>
   );
+};
+
+ProductToggle.propTypes = {
+  isEditing: bool.isRequired,
+  toggle: func.isRequired,
 };
 
 export default ProductToggle;
