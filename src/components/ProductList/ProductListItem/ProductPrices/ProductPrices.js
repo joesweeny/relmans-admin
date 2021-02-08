@@ -1,5 +1,5 @@
 import React from 'react';
-import { arrayOf, number, shape, string } from 'prop-types';
+import { arrayOf, bool, number, shape, string } from 'prop-types';
 import styled from 'styled-components';
 
 import ProductPrice from './ProductPrice/ProductPrice';
@@ -17,18 +17,19 @@ const ProductPricesWrapper = styled.div`
 `;
 
 const ProductPrices = (props) => {
-  const { prices } = props;
+  const { isEditing, prices } = props;
 
   return (
     <ProductPricesWrapper>
       {prices.map((p) => (
-        <ProductPrice price={p} key={p.id} />
+        <ProductPrice isEditing={isEditing} price={p} key={p.id} />
       ))}
     </ProductPricesWrapper>
   );
 };
 
 ProductPrices.propTypes = {
+  isEditing: bool.isRequired,
   prices: arrayOf(
     shape({
       id: string.isRequired,

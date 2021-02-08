@@ -68,14 +68,13 @@ const ProductListItem = (props) => {
         <ProductInformationWrapper>
           <ProductInfo title={product.name} />
           <ProductStatus
-            id={product.id}
             isEditing={isEditing}
-            status={product.status}
+            product={product}
             reload={reload}
             toggle={toggleEdit}
           />
         </ProductInformationWrapper>
-        <ProductPrices prices={product.prices} />
+        <ProductPrices isEditing={isEditing} prices={product.prices} />
       </ProductDataWrapper>
       <ProductToggle isEditing={isEditing} toggle={toggleEdit} />
     </ProductListItemWrapper>

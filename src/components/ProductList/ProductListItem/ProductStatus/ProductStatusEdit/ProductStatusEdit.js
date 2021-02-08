@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { func, string } from 'prop-types';
+import { arrayOf, func, number, shape, string } from 'prop-types';
 
 import { updateProductStatus } from '../../../../../gateway/client';
 
@@ -18,11 +18,16 @@ const ProductStatusEditWrapper = styled.div`
 `;
 
 const ProductStatusEdit = (props) => {
-  const { id, reload, status, toggle } = props;
+  const { product, reload, toggle } = props;
 
-  const updateStatus = (e) => {
-    updateProductStatus(id, e).then(() => {
-      reload(true);
+  const updateStatus = (s) => {
+    updateProductStatus(product.id, s).then(() => {
+      const newProduct = {
+        ...product,
+        status: s,
+      };
+
+      reload(newProduct);
       toggle();
     });
   };
@@ -32,7 +37,7 @@ const ProductStatusEdit = (props) => {
       <select
         onBlur={(e) => updateStatus(e.target.value)}
         onChange={(e) => updateStatus(e.target.value)}
-        value={status}
+        value={product.status}
       >
         {options.map((o) => (
           <option value={o} key={o}>
@@ -45,9 +50,20 @@ const ProductStatusEdit = (props) => {
 };
 
 ProductStatusEdit.propTypes = {
-  id: string.isRequired,
   reload: func.isRequired,
-  status: string.isRequired,
+  product: shape({
+    id: string.isRequired,
+    name: string.isRequired,
+    status: string.isRequired,
+    prices: arrayOf(
+      shape({
+        id: string.isRequired,
+        value: number.isRequired,
+        size: number.isRequired,
+        measurement: string.isRequired,
+      })
+    ).isRequired,
+  }).isRequired,
   toggle: func.isRequired,
 };
 
