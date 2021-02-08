@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { arrayOf, func, number, shape, string } from 'prop-types';
+import { arrayOf, number, shape, string } from 'prop-types';
 import styled from 'styled-components';
 
 import ProductImage from './ProductImage/ProductImage';
@@ -54,7 +54,7 @@ const ProductInformationWrapper = styled.div`
 `;
 
 const ProductListItem = (props) => {
-  const { product, reload } = props;
+  const { product } = props;
   const [isEditing, setIsEditing] = useState(false);
 
   const toggleEdit = () => {
@@ -70,7 +70,6 @@ const ProductListItem = (props) => {
           <ProductStatus
             isEditing={isEditing}
             product={product}
-            reload={reload}
             toggle={toggleEdit}
           />
         </ProductInformationWrapper>
@@ -95,7 +94,6 @@ ProductListItem.propTypes = {
       })
     ).isRequired,
   }).isRequired,
-  reload: func.isRequired,
 };
 
 export default ProductListItem;

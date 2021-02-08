@@ -5,7 +5,6 @@ import useAsyncError from './useAsyncError';
 
 const useFetchesProducts = () => {
   const [products, setProducts] = useState([]);
-  const [load, setLoad] = useState(true);
   const [loading, setLoading] = useState(false);
   const throwError = useAsyncError();
 
@@ -18,9 +17,7 @@ const useFetchesProducts = () => {
         setLoading(false);
       })
       .catch((e) => throwError(e));
-
-    return () => setLoad(false);
-  }, [load, setLoad, setLoading, setProducts, throwError]);
+  }, [setLoading, setProducts, throwError]);
 
   return {
     products,

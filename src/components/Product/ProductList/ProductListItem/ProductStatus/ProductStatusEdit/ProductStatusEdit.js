@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
 import { arrayOf, func, number, shape, string } from 'prop-types';
 
-import { updateProductStatus } from '../../../../../gateway/client';
+import { updateProductStatus } from '../../../../../../gateway/client';
+import { ProductActionContext } from '../../../../../../context/ProductContext';
 
 const options = ['IN_STOCK', 'OUT_OF_SEASON', 'OUT_OF_STOCK'];
 
@@ -18,7 +19,8 @@ const ProductStatusEditWrapper = styled.div`
 `;
 
 const ProductStatusEdit = (props) => {
-  const { product, reload, toggle } = props;
+  const { product, toggle } = props;
+  const { updateProduct } = useContext(ProductActionContext);
 
   const updateStatus = (s) => {
     updateProductStatus(product.id, s).then(() => {
@@ -26,8 +28,7 @@ const ProductStatusEdit = (props) => {
         ...product,
         status: s,
       };
-
-      reload(newProduct);
+      updateProduct(newProduct);
       toggle();
     });
   };
@@ -50,7 +51,6 @@ const ProductStatusEdit = (props) => {
 };
 
 ProductStatusEdit.propTypes = {
-  reload: func.isRequired,
   product: shape({
     id: string.isRequired,
     name: string.isRequired,

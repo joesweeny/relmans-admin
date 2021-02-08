@@ -19,7 +19,7 @@ const ProductStatusWrapper = styled.div`
 `;
 
 const productStatus = (props) => {
-  const { isEditing, product, reload, toggle } = props;
+  const { isEditing, product, toggle } = props;
 
   let color = 'green';
 
@@ -34,7 +34,7 @@ const productStatus = (props) => {
   return (
     <ProductStatusWrapper color={color}>
       {isEditing ? (
-        <ProductStatusEdit product={product} reload={reload} toggle={toggle} />
+        <ProductStatusEdit product={product} toggle={toggle} />
       ) : (
         product.status.replace(/[_-]/g, ' ')
       )}
@@ -57,7 +57,6 @@ productStatus.propTypes = {
       })
     ).isRequired,
   }).isRequired,
-  reload: func.isRequired,
   toggle: func.isRequired,
 };
 
