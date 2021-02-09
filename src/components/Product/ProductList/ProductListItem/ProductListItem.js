@@ -7,6 +7,10 @@ import ProductInfo from './ProductInfo/ProductInfo';
 import ProductStatus from './ProductStatus/ProductStatus';
 import ProductPrices from './ProductPrices/ProductPrices';
 import ProductToggle from './ProductToggle/ProductToggle';
+import {
+  updateProductStatus,
+  updateProductPrice,
+} from '../../../../gateway/client';
 import { ProductActionContext } from '../../../../context/ProductContext';
 
 const ProductListItemWrapper = styled.div`
@@ -58,13 +62,33 @@ const ProductInformationWrapper = styled.div`
 const ProductListItem = (props) => {
   const { product } = props;
   const [selectedProduct, setSelectedProduct] = useState(product);
-  const { updateProduct } = useContext(ProductActionContext);
-
+  const [updatedPrices, setUpdatedPrices] = useState(product.prices);
+  const { refreshProducts } = useContext(ProductActionContext);
   const [isEditing, setIsEditing] = useState(false);
 
   const toggleEdit = () => {
-    if (isEditing && product.status !== selectedProduct.status) {
-      updateProduct(selectedProduct);
+    if (isEditing) {
+      if (product.status !== selectedProduct.status) {
+        updateProductStatus(product.id, selectedProduct.status).catch((e) => {
+          console.log(e);
+        });
+      }
+
+      updatedPrices.forEach((u) => {
+        product.prices.forEach((p) => {
+          if (p.id === u.id && p.value !== u.value) {
+            updateProductPrice(u.id, u.value).catch((e) => console.log(e));
+          }
+        });
+      });
+
+      const newProduct = {
+        ...product,
+        status: selectedProduct.status,
+        prices: updatedPrices,
+      };
+
+      refreshProducts(newProduct);
     }
 
     setIsEditing(!isEditing);
@@ -85,8 +109,7 @@ const ProductListItem = (props) => {
         <ProductPrices
           isEditing={isEditing}
           prices={product.prices}
-          productId={product.id}
-          toggle={toggleEdit}
+          updatePrices={setUpdatedPrices}
         />
       </ProductDataWrapper>
       <ProductToggle isEditing={isEditing} toggle={toggleEdit} />
