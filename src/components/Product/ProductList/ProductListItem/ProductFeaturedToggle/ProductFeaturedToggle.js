@@ -14,8 +14,6 @@ const ProductToggleWrapper = styled.div`
   width: 100%;
   background-color: #3d604c;
   font-size: 14px;
-  text-transform: uppercase;
-  color: white;
   padding: 5px 15px 5px 5px;
 
   svg {
