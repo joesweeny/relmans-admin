@@ -38,7 +38,7 @@ const ProductPriceWrapper = styled.div`
 `;
 
 const productPrice = (props) => {
-  const { isEditing, price, productId, toggle } = props;
+  const { isEditing, price, updatePrice } = props;
   const value = (price.value / 100).toFixed(2);
 
   return (
@@ -46,12 +46,7 @@ const productPrice = (props) => {
       <p>{price.size}</p>
       <p>{displayMeasurement(price.measurement)}</p>
       {isEditing ? (
-        <ProductPriceEdit
-          value={value}
-          productId={productId}
-          priceId={price.id}
-          toggle={toggle}
-        />
+        <ProductPriceEdit price={price} updatePrice={updatePrice} />
       ) : (
         <p>£ {value}</p>
       )}
@@ -62,12 +57,12 @@ const productPrice = (props) => {
 productPrice.propTypes = {
   isEditing: bool.isRequired,
   price: shape({
+    id: string.isRequired,
     value: number.isRequired,
     size: number.isRequired,
     measurement: string.isRequired,
-  }),
-  productId: string.isRequired,
-  toggle: func.isRequired,
+  }).isRequired,
+  updatePrice: func.isRequired,
 };
 
 export default productPrice;

@@ -10,14 +10,10 @@ const ProductPricesWrapper = styled.div`
   justify-content: flex-start;
   width: 100%;
   margin-right: 10px;
-
-  @media (min-width: 768px) {
-    margin-right: 10px;
-  }
 `;
 
 const ProductPrices = (props) => {
-  const { isEditing, prices, productId, toggle } = props;
+  const { isEditing, prices, updatePrices } = props;
 
   return (
     <ProductPricesWrapper>
@@ -25,9 +21,8 @@ const ProductPrices = (props) => {
         <ProductPrice
           isEditing={isEditing}
           price={p}
-          productId={productId}
           key={p.id}
-          toggle={toggle}
+          updatePrice={updatePrices}
         />
       ))}
     </ProductPricesWrapper>
@@ -44,8 +39,7 @@ ProductPrices.propTypes = {
       measurement: string.isRequired,
     })
   ).isRequired,
-  productId: string.isRequired,
-  toggle: func.isRequired,
+  updatePrices: func.isRequired,
 };
 
 export default ProductPrices;

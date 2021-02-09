@@ -1,14 +1,6 @@
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
-import { func, string } from 'prop-types';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
-
-import { updateProductPrice } from '../../../../../../../gateway/client';
-import {
-  ProductActionContext,
-  ProductContext,
-} from '../../../../../../../context/ProductContext';
+import { func, number, shape, string } from 'prop-types';
 
 const ProductPriceEditWrapper = styled.div`
   display: flex;
@@ -48,31 +40,23 @@ const ProductPriceEditWrapper = styled.div`
 `;
 
 const ProductPriceEdit = (props) => {
-  const { value, productId, priceId, toggle } = props;
-  const [inputValue, setInputValue] = useState(value);
-  const { products } = useContext(ProductContext);
-  const { updateProduct } = useContext(ProductActionContext);
+  const { price, updatePrice } = props;
+  const [inputValue, setInputValue] = useState((price.value / 100).toFixed(2));
 
-  const updatePrice = () => {
-    const v = parseFloat(inputValue) * 100;
-    const product = products.find((p) => p.id === productId);
-    const price = product.prices.find((p) => p.id === priceId);
-    const prices = product.prices.filter((p) => p.id !== priceId);
-    const newPrices = [
-      ...prices,
-      {
-        ...price,
-        value: v,
-      },
-    ].sort((a, b) => a.measurement.localeCompare(b.measurement));
+  const update = (v) => {
+    setInputValue(v);
 
-    updateProductPrice(priceId, v).then(() => {
-      const newProduct = {
-        ...product,
-        prices: newPrices,
-      };
-      toggle();
-      updateProduct(newProduct);
+    const newPrice = {
+      ...price,
+      value: parseFloat(v) * 100,
+    };
+
+    updatePrice((prev) => {
+      const prices = prev.filter((p) => p.id !== newPrice.id);
+
+      return [...prices, newPrice].sort((a, b) =>
+        a.measurement.localeCompare(b.measurement)
+      );
     });
   };
 
@@ -80,23 +64,21 @@ const ProductPriceEdit = (props) => {
     <ProductPriceEditWrapper>
       <input
         value={inputValue}
-        onChange={(e) => setInputValue(e.target.value)}
+        onChange={(e) => update(e.target.value)}
         onClick={(e) => e.stopPropagation()}
-      />
-      <FontAwesomeIcon
-        icon={faCheckCircle}
-        size="1x"
-        onClick={() => updatePrice()}
       />
     </ProductPriceEditWrapper>
   );
 };
 
 ProductPriceEdit.propTypes = {
-  value: string.isRequired,
-  productId: string.isRequired,
-  priceId: string.isRequired,
-  toggle: func.isRequired,
+  price: shape({
+    id: string.isRequired,
+    value: number.isRequired,
+    size: number.isRequired,
+    measurement: string.isRequired,
+  }).isRequired,
+  updatePrice: func.isRequired,
 };
 
 export default ProductPriceEdit;
