@@ -8,12 +8,12 @@ import { ProductContext } from '../../../context/ProductContext';
 const ProductListWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-content: center;
   margin: 10px;
   padding-bottom: 30px;
 
-  @media (min-width: 768px) {
+  @media (min-width: 959px) {
     flex-wrap: wrap;
     justify-content: center;
     align-content: center;

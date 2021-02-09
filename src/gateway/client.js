@@ -5,6 +5,10 @@ export const getProducts = async () => {
   return response.data.data.products;
 };
 
+export const updateProductFeatured = async (id, featured) => {
+  await axios.patch(`/product/${id}`, { featured });
+};
+
 export const updateProductStatus = async (id, status) => {
   await axios.patch(`/product/${id}`, { status });
 };
