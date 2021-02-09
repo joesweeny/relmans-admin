@@ -13,12 +13,12 @@ const ProductPriceWrapper = styled.div`
   width: 100%;
 
   p {
-    padding-right: 3px;
+    padding: 2px;
 
     :last-child {
       font-size: 18px;
       padding-left: 10px;
-      padding-right: 10px;
+      padding-right: 5px;
     }
   }
 
@@ -26,7 +26,7 @@ const ProductPriceWrapper = styled.div`
     font-size: 22px;
 
     p {
-      padding: 5px;
+      padding: 2px;
 
       :last-child {
         font-size: 26px;
