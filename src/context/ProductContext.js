@@ -1,7 +1,7 @@
 import React, { createContext, useEffect, useMemo, useState } from 'react';
 import { node } from 'prop-types';
 import useAsyncError from '../hooks/useAsyncError';
-import { getProducts } from '../gateway/client';
+import { getProducts, updateProductStatus } from '../gateway/client';
 
 export const ProductContext = createContext(null);
 export const ProductActionContext = createContext(null);
@@ -26,16 +26,18 @@ const ProductContextProvider = (props) => {
   }, [throwError]);
 
   const updateProduct = (product) => {
-    const pr = products.filter((p) => p.id !== product.id);
-    const filtered = filteredProducts.filter((p) => p.id !== product.id);
-    const newProducts = [...pr, product].sort((a, b) =>
-      a.name.localeCompare(b.name)
-    );
-    const newFilteredProducts = [...filtered, product].sort((a, b) =>
-      a.name.localeCompare(b.name)
-    );
-    setProducts(newProducts);
-    setFilteredProducts(newFilteredProducts);
+    updateProductStatus(product.id, product.status).then(() => {
+      const pr = products.filter((p) => p.id !== product.id);
+      const filtered = filteredProducts.filter((p) => p.id !== product.id);
+      const newProducts = [...pr, product].sort((a, b) =>
+        a.name.localeCompare(b.name)
+      );
+      const newFilteredProducts = [...filtered, product].sort((a, b) =>
+        a.name.localeCompare(b.name)
+      );
+      setProducts(newProducts);
+      setFilteredProducts(newFilteredProducts);
+    });
   };
 
   const filterProducts = (search) => {

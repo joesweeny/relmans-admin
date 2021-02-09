@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { arrayOf, number, shape, string } from 'prop-types';
 import styled from 'styled-components';
 
@@ -7,6 +7,7 @@ import ProductInfo from './ProductInfo/ProductInfo';
 import ProductStatus from './ProductStatus/ProductStatus';
 import ProductPrices from './ProductPrices/ProductPrices';
 import ProductToggle from './ProductToggle/ProductToggle';
+import { ProductActionContext } from '../../../../context/ProductContext';
 
 const ProductListItemWrapper = styled.div`
   display: flex;
@@ -36,6 +37,7 @@ const ProductDataWrapper = styled.div`
   justify-content: space-between;
   width: 100%;
   align-items: center;
+  cursor: pointer;
 
   @media (min-width: 959px) {
     margin-left: 15px;
@@ -55,22 +57,29 @@ const ProductInformationWrapper = styled.div`
 
 const ProductListItem = (props) => {
   const { product } = props;
+  const [selectedProduct, setSelectedProduct] = useState(product);
+  const { updateProduct } = useContext(ProductActionContext);
+
   const [isEditing, setIsEditing] = useState(false);
 
   const toggleEdit = () => {
+    if (isEditing && product.status !== selectedProduct.status) {
+      updateProduct(selectedProduct);
+    }
+
     setIsEditing(!isEditing);
   };
 
   return (
     <ProductListItemWrapper>
-      <ProductDataWrapper>
+      <ProductDataWrapper onClick={() => toggleEdit()}>
         <ProductImage id={product.id} name={product.name} />
         <ProductInformationWrapper>
           <ProductInfo title={product.name} />
           <ProductStatus
             isEditing={isEditing}
-            product={product}
-            toggle={toggleEdit}
+            product={selectedProduct}
+            updateProduct={setSelectedProduct}
           />
         </ProductInformationWrapper>
         <ProductPrices

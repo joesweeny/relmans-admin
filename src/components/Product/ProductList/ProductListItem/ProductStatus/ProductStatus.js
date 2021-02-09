@@ -12,6 +12,7 @@ const ProductStatusWrapper = styled.div`
   font-size: 14px;
   color: ${(prop) => prop.color};
   text-align: left;
+  padding-top: 10px;
 
   @media (min-width: 959px) {
     font-size: 18px;
@@ -19,7 +20,7 @@ const ProductStatusWrapper = styled.div`
 `;
 
 const productStatus = (props) => {
-  const { isEditing, product, toggle } = props;
+  const { isEditing, product, updateProduct } = props;
 
   let color = 'green';
 
@@ -34,7 +35,7 @@ const productStatus = (props) => {
   return (
     <ProductStatusWrapper color={color}>
       {isEditing ? (
-        <ProductStatusEdit product={product} toggle={toggle} />
+        <ProductStatusEdit product={product} updateProduct={updateProduct} />
       ) : (
         product.status.replace(/[_-]/g, ' ')
       )}
@@ -57,7 +58,7 @@ productStatus.propTypes = {
       })
     ).isRequired,
   }).isRequired,
-  toggle: func.isRequired,
+  updateProduct: func.isRequired,
 };
 
 export default productStatus;

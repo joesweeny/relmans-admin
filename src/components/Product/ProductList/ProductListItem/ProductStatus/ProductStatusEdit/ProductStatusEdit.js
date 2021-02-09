@@ -1,9 +1,6 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { arrayOf, func, number, shape, string } from 'prop-types';
-
-import { updateProductStatus } from '../../../../../../gateway/client';
-import { ProductActionContext } from '../../../../../../context/ProductContext';
 
 const options = ['IN_STOCK', 'OUT_OF_SEASON', 'OUT_OF_STOCK'];
 
@@ -15,22 +12,20 @@ const ProductStatusEditWrapper = styled.div`
 
   select {
     cursor: pointer;
+    padding: 5px 0 5px 0;
   }
 `;
 
 const ProductStatusEdit = (props) => {
-  const { product, toggle } = props;
-  const { updateProduct } = useContext(ProductActionContext);
+  const { product, updateProduct } = props;
 
   const updateStatus = (s) => {
-    updateProductStatus(product.id, s).then(() => {
-      const newProduct = {
-        ...product,
-        status: s,
-      };
-      updateProduct(newProduct);
-      toggle();
-    });
+    const newProduct = {
+      ...product,
+      status: s,
+    };
+
+    updateProduct(newProduct);
   };
 
   return (
@@ -38,6 +33,7 @@ const ProductStatusEdit = (props) => {
       <select
         onBlur={(e) => updateStatus(e.target.value)}
         onChange={(e) => updateStatus(e.target.value)}
+        onClick={(e) => e.stopPropagation()}
         value={product.status}
       >
         {options.map((o) => (
@@ -64,7 +60,7 @@ ProductStatusEdit.propTypes = {
       })
     ).isRequired,
   }).isRequired,
-  toggle: func.isRequired,
+  updateProduct: func.isRequired,
 };
 
 export default ProductStatusEdit;

@@ -81,6 +81,7 @@ const ProductPriceEdit = (props) => {
       <input
         value={inputValue}
         onChange={(e) => setInputValue(e.target.value)}
+        onClick={(e) => e.stopPropagation()}
       />
       <FontAwesomeIcon
         icon={faCheckCircle}
