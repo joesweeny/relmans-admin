@@ -36,6 +36,7 @@ const ProductDataWrapper = styled.div`
   justify-content: space-between;
   width: 100%;
   align-items: center;
+  cursor: pointer;
 
   @media (min-width: 959px) {
     margin-left: 15px;
@@ -63,7 +64,7 @@ const ProductListItem = (props) => {
 
   return (
     <ProductListItemWrapper>
-      <ProductDataWrapper>
+      <ProductDataWrapper onClick={() => toggleEdit()}>
         <ProductImage id={product.id} name={product.name} />
         <ProductInformationWrapper>
           <ProductInfo title={product.name} />
