@@ -14,11 +14,13 @@ const ProductFeaturedToggleWrapper = styled.div`
   background-color: #3d604c;
   font-size: 14px;
   padding: 5px 15px 5px 5px;
+  transition: all 1s ease-out;
 
   svg {
     &:hover {
       cursor: pointer;
       color: ${(props) => (props.featured ? 'white' : '#f1943c')};
+      transform: scale(1.3);
     }
   }
 
