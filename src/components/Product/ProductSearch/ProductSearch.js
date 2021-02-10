@@ -1,10 +1,8 @@
-import React, { useContext, useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { func, string } from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
-
-import { ProductActionContext } from '../../../context/ProductContext';
 
 const ProductSearchWrapper = styled.div`
   display: flex;
