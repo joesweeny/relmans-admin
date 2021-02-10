@@ -2,9 +2,13 @@ import React, { useContext, useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 import Loader from '../../Loader/Loader';
+import Modal from '../../Modal/Modal';
 import ProductListItem from './ProductListItem/ProductListItem';
 import ProductSearch from '../ProductSearch/ProductSearch';
-import { ProductContext } from '../../../context/ProductContext';
+import {
+  ProductActionContext,
+  ProductContext,
+} from '../../../context/ProductContext';
 
 const ProductListWrapper = styled.div`
   display: flex;
@@ -22,7 +26,8 @@ const ProductListWrapper = styled.div`
 `;
 
 const ProductList = () => {
-  const { products, loading } = useContext(ProductContext);
+  const { products, error, loading } = useContext(ProductContext);
+  const { clearError } = useContext(ProductActionContext);
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [search, setSearch] = useState('');
 
@@ -36,6 +41,9 @@ const ProductList = () => {
 
   return (
     <ProductListWrapper>
+      <Modal clicked={clearError} show={!!error}>
+        {error}
+      </Modal>
       <Loader loading={loading}>
         <ProductSearch search={search} updateSearch={setSearch} />
         {filteredProducts.map((p) => (

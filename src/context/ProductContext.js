@@ -21,9 +21,9 @@ export const ProductActionContext = createContext(null);
 const ProductContextProvider = (props) => {
   const { children } = props;
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
   const [state, dispatch] = useReducer(reducer, {
     products: [],
-    error: null,
   });
 
   useEffect(() => {
@@ -34,7 +34,11 @@ const ProductContextProvider = (props) => {
         dispatch(setProducts(p));
         setLoading(false);
       })
-      .catch((e) => console.log(e));
+      .catch((e) => {
+        setError(e.response.data.errors[0].message);
+      });
+
+    return setProducts([]);
   }, []);
 
   const dispatchStatus = (productId, status) => {
@@ -44,7 +48,9 @@ const ProductContextProvider = (props) => {
       .then(() => {
         dispatch(updateProductStatus(productId, status));
       })
-      .catch((e) => console.log(e));
+      .catch((e) => {
+        setError(`Product error: ${e.response.data.errors[0].message}`);
+      });
   };
 
   const dispatchPrice = (productId, priceId, value) => {
@@ -52,7 +58,9 @@ const ProductContextProvider = (props) => {
       .then(() => {
         dispatch(updateProductPrice(productId, priceId, value));
       })
-      .catch((e) => alert(e));
+      .catch((e) => {
+        setError(`Price error: ${e.response.data.errors[0].message}`);
+      });
   };
 
   const dispatchFeatured = (productId, featured) => {
@@ -62,21 +70,25 @@ const ProductContextProvider = (props) => {
       .then(() => {
         dispatch(updateProductFeatured(productId, featured));
       })
-      .catch((e) => console.log(e));
+      .catch((e) => {
+        setError(`Product error: ${e.response.data.errors[0].message}`);
+      });
   };
 
   const store = useMemo(
     () => ({
       products: state.products,
+      error,
       loading,
     }),
-    [state.products, loading]
+    [error, loading, state.products]
   );
 
   const actions = {
     dispatchPrice,
     dispatchStatus,
     dispatchFeatured,
+    clearError: () => setError(null),
   };
 
   return (
