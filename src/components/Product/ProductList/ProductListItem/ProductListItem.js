@@ -1,12 +1,13 @@
 import React, { useContext, useState } from 'react';
-import { arrayOf, number, shape, string } from 'prop-types';
+import { arrayOf, bool, number, shape, string } from 'prop-types';
 import styled from 'styled-components';
 
 import ProductImage from './ProductImage/ProductImage';
 import ProductInfo from './ProductInfo/ProductInfo';
 import ProductStatus from './ProductStatus/ProductStatus';
 import ProductPrices from './ProductPrices/ProductPrices';
-import ProductToggle from './ProductToggle/ProductToggle';
+import ProductFeaturedToggle from './ProductFeaturedToggle/ProductFeaturedToggle';
+
 import { ProductActionContext } from '../../../../context/ProductContext';
 
 const ProductListItemWrapper = styled.div`
@@ -22,10 +23,13 @@ const ProductListItemWrapper = styled.div`
   font-weight: 600;
   width: 100%;
   padding: 0;
-  margin: 5px 0 5px 0;
+  margin: 5px 10px 5px 0;
+
+  @media (min-width: 758px) {
+    flex-direction: row;
+  }
 
   @media (min-width: 959px) {
-    flex-direction: row;
     width: 60%;
     margin: 10px;
   }
@@ -98,7 +102,7 @@ const ProductListItem = (props) => {
           updatePrices={setPrices}
         />
       </ProductDataWrapper>
-      <ProductToggle isEditing={isEditing} toggle={toggleEdit} />
+      <ProductFeaturedToggle id={product.id} featured={product.featured} />
     </ProductListItemWrapper>
   );
 };
@@ -108,6 +112,7 @@ ProductListItem.propTypes = {
     id: string.isRequired,
     name: string.isRequired,
     status: string.isRequired,
+    featured: bool.isRequired,
     prices: arrayOf(
       shape({
         id: string.isRequired,

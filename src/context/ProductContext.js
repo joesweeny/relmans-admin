@@ -12,6 +12,7 @@ import {
   setProducts,
   updateProductPrice,
   updateProductStatus,
+  updateProductFeatured,
 } from '../store/actions/product';
 
 export const ProductContext = createContext(null);
@@ -54,6 +55,16 @@ const ProductContextProvider = (props) => {
       .catch((e) => alert(e));
   };
 
+  const dispatchFeatured = (productId, featured) => {
+    const payload = { featured };
+
+    updateProduct(productId, payload)
+      .then(() => {
+        dispatch(updateProductFeatured(productId, featured));
+      })
+      .catch((e) => console.log(e));
+  };
+
   const store = useMemo(
     () => ({
       products: state.products,
@@ -65,6 +76,7 @@ const ProductContextProvider = (props) => {
   const actions = {
     dispatchPrice,
     dispatchStatus,
+    dispatchFeatured,
   };
 
   return (

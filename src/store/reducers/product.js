@@ -8,6 +8,21 @@ const setProducts = (state, action) => {
   };
 };
 
+const updateProductFeatured = (state, action) => {
+  const product = state.products.find((p) => p.id === action.id);
+  const products = state.products.filter((p) => p.id !== action.id);
+
+  const newProduct = {
+    ...product,
+    featured: action.featured,
+  };
+
+  return {
+    ...state,
+    products: addSortProduct(products, newProduct),
+  };
+};
+
 const updateProductStatus = (state, action) => {
   const product = state.products.find((p) => p.id === action.id);
   const products = state.products.filter((p) => p.id !== action.id);
@@ -53,6 +68,8 @@ const reducer = (state, action) => {
       return updateProductStatus(state, action);
     case actionTypes.UPDATE_PRODUCT_PRICE:
       return updateProductPrice(state, action);
+    case actionTypes.UPDATE_PRODUCT_FEATURED:
+      return updateProductFeatured(state, action);
     default:
       return state;
   }

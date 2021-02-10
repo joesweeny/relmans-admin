@@ -9,7 +9,7 @@ import { ProductContext } from '../../../context/ProductContext';
 const ProductListWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-content: center;
   padding-bottom: 30px;
   width: 100%;
