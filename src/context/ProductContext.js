@@ -44,9 +44,13 @@ const ProductContextProvider = (props) => {
   const dispatchStatus = (productId, status) => {
     const payload = { status };
 
-    updateProduct(productId, payload).then(() => {
-      dispatch(updateProductStatus(productId, status));
-    });
+    updateProduct(productId, payload)
+      .then(() => {
+        dispatch(updateProductStatus(productId, status));
+      })
+      .catch((e) => {
+        setError(`Product error: ${e.response.data.errors[0].message}`);
+      });
   };
 
   const dispatchPrice = (productId, priceId, value) => {
@@ -62,9 +66,13 @@ const ProductContextProvider = (props) => {
   const dispatchFeatured = (productId, featured) => {
     const payload = { featured };
 
-    updateProduct(productId, payload).then(() => {
-      dispatch(updateProductFeatured(productId, featured));
-    });
+    updateProduct(productId, payload)
+      .then(() => {
+        dispatch(updateProductFeatured(productId, featured));
+      })
+      .catch((e) => {
+        setError(`Product error: ${e.response.data.errors[0].message}`);
+      });
   };
 
   const store = useMemo(
