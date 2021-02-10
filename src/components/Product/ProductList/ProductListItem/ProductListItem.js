@@ -7,10 +7,7 @@ import ProductInfo from './ProductInfo/ProductInfo';
 import ProductStatus from './ProductStatus/ProductStatus';
 import ProductPrices from './ProductPrices/ProductPrices';
 import ProductFeaturedToggle from './ProductFeaturedToggle/ProductFeaturedToggle';
-import {
-  updateProductStatus,
-  updateProductPrice,
-} from '../../../../gateway/client';
+
 import { ProductActionContext } from '../../../../context/ProductContext';
 
 const ProductListItemWrapper = styled.div`
@@ -64,35 +61,24 @@ const ProductInformationWrapper = styled.div`
 
 const ProductListItem = (props) => {
   const { product } = props;
-  const [selectedProduct, setSelectedProduct] = useState(product);
-  const [updatedPrices, setUpdatedPrices] = useState(product.prices);
-  const { refreshProducts } = useContext(ProductActionContext);
+  const [status, setStatus] = useState(null);
+  const [prices, setPrices] = useState([]);
+  const { dispatchPrice, dispatchStatus } = useContext(ProductActionContext);
   const [isEditing, setIsEditing] = useState(false);
 
   const toggleEdit = () => {
     if (isEditing) {
-      if (product.status !== selectedProduct.status) {
-        updateProductStatus(product.id, selectedProduct.status).catch((e) => {
-          console.log(e);
-        });
+      if (status !== null) {
+        dispatchStatus(product.id, status);
+        setStatus(null);
       }
 
-      updatedPrices.forEach((u) => {
-        product.prices.forEach((p) => {
-          if (p.id === u.id && p.value !== u.value) {
-            updateProductPrice(u.id, u.value).catch((e) => console.log(e));
-          }
+      if (prices.length > 0) {
+        prices.forEach((p) => {
+          dispatchPrice(product.id, p.id, p.value);
+          setPrices([]);
         });
-      });
-
-      const newProduct = {
-        ...product,
-        status: selectedProduct.status,
-        prices: updatedPrices,
-      };
-
-      setSelectedProduct(newProduct);
-      refreshProducts(newProduct);
+      }
     }
 
     setIsEditing(!isEditing);
@@ -106,20 +92,17 @@ const ProductListItem = (props) => {
           <ProductInfo title={product.name} />
           <ProductStatus
             isEditing={isEditing}
-            product={selectedProduct}
-            updateProduct={setSelectedProduct}
+            status={product.status}
+            updateStatus={setStatus}
           />
         </ProductInformationWrapper>
         <ProductPrices
           isEditing={isEditing}
           prices={product.prices}
-          updatePrices={setUpdatedPrices}
+          updatePrices={setPrices}
         />
       </ProductDataWrapper>
-      <ProductFeaturedToggle
-        product={selectedProduct}
-        updateProduct={setSelectedProduct}
-      />
+      <ProductFeaturedToggle id={product.id} featured={product.featured} />
     </ProductListItemWrapper>
   );
 };

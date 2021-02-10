@@ -1,11 +1,10 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
-import { arrayOf, bool, func, number, shape, string } from 'prop-types';
+import { bool, string } from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
 
 import { ProductActionContext } from '../../../../../context/ProductContext';
-import { updateProductFeatured } from '../../../../../gateway/client';
 
 const ProductToggleWrapper = styled.div`
   display: flex;
@@ -39,48 +38,23 @@ const ProductToggleWrapper = styled.div`
 `;
 
 const ProductFeaturedToggle = (props) => {
-  const { product, updateProduct } = props;
-  const { refreshProducts } = useContext(ProductActionContext);
-
-  const update = () => {
-    updateProductFeatured(product.id, !product.featured).then(() => {
-      const newProduct = {
-        ...product,
-        featured: !product.featured,
-      };
-
-      updateProduct(newProduct);
-      refreshProducts(newProduct);
-    });
-  };
+  const { id, featured } = props;
+  const { dispatchFeatured } = useContext(ProductActionContext);
 
   return (
-    <ProductToggleWrapper featured={product.featured}>
+    <ProductToggleWrapper featured={featured}>
       <FontAwesomeIcon
         icon={faCheckCircle}
-        color={product.featured ? '#f1943c' : 'white'}
-        onClick={() => update()}
+        color={featured ? '#f1943c' : 'white'}
+        onClick={() => dispatchFeatured(id, !featured)}
       />
     </ProductToggleWrapper>
   );
 };
 
 ProductFeaturedToggle.propTypes = {
-  product: shape({
-    id: string.isRequired,
-    name: string.isRequired,
-    status: string.isRequired,
-    featured: bool.isRequired,
-    prices: arrayOf(
-      shape({
-        id: string.isRequired,
-        value: number.isRequired,
-        size: number.isRequired,
-        measurement: string.isRequired,
-      })
-    ).isRequired,
-  }).isRequired,
-  updateProduct: func.isRequired,
+  id: string.isRequired,
+  featured: bool.isRequired,
 };
 
 export default ProductFeaturedToggle;

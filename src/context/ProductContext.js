@@ -1,63 +1,82 @@
-import React, { createContext, useEffect, useMemo, useState } from 'react';
+import React, {
+  createContext,
+  useEffect,
+  useMemo,
+  useState,
+  useReducer,
+} from 'react';
 import { node } from 'prop-types';
-import useAsyncError from '../hooks/useAsyncError';
-import { getProducts } from '../gateway/client';
+import { getProducts, updatePrice, updateProduct } from '../gateway/client';
+import reducer from '../store/reducers/product';
+import {
+  setProducts,
+  updateProductPrice,
+  updateProductStatus,
+  updateProductFeatured,
+} from '../store/actions/product';
 
 export const ProductContext = createContext(null);
 export const ProductActionContext = createContext(null);
 
 const ProductContextProvider = (props) => {
   const { children } = props;
-  const [products, setProducts] = useState([]);
-  const [filteredProducts, setFilteredProducts] = useState([]);
   const [loading, setLoading] = useState(false);
-  const throwError = useAsyncError();
+  const [state, dispatch] = useReducer(reducer, {
+    products: [],
+    error: null,
+  });
 
   useEffect(() => {
     setLoading(true);
 
     getProducts()
       .then((p) => {
-        setProducts(p);
-        setFilteredProducts(p);
+        dispatch(setProducts(p));
         setLoading(false);
       })
-      .catch((e) => throwError(e));
-  }, [throwError]);
+      .catch((e) => console.log(e));
+  }, []);
 
-  const refreshProducts = (product) => {
-    const pr = products.filter((p) => p.id !== product.id);
-    const filtered = filteredProducts.filter((p) => p.id !== product.id);
-    const newProducts = [...pr, product].sort((a, b) =>
-      a.name.localeCompare(b.name)
-    );
-    const newFilteredProducts = [...filtered, product].sort((a, b) =>
-      a.name.localeCompare(b.name)
-    );
-    setProducts(newProducts);
-    setFilteredProducts(newFilteredProducts);
+  const dispatchStatus = (productId, status) => {
+    const payload = { status };
+
+    updateProduct(productId, payload)
+      .then(() => {
+        dispatch(updateProductStatus(productId, status));
+      })
+      .catch((e) => console.log(e));
   };
 
-  const filterProducts = (search) => {
-    setFilteredProducts(
-      products.filter((p) =>
-        p.name.toLowerCase().includes(search.toLowerCase())
-      )
-    );
+  const dispatchPrice = (productId, priceId, value) => {
+    updatePrice(priceId, value)
+      .then(() => {
+        dispatch(updateProductPrice(productId, priceId, value));
+      })
+      .catch((e) => alert(e));
+  };
+
+  const dispatchFeatured = (productId, featured) => {
+    const payload = { featured };
+
+    updateProduct(productId, payload)
+      .then(() => {
+        dispatch(updateProductFeatured(productId, featured));
+      })
+      .catch((e) => console.log(e));
   };
 
   const store = useMemo(
     () => ({
-      products,
-      filteredProducts,
+      products: state.products,
       loading,
     }),
-    [filteredProducts, products, loading]
+    [state.products, loading]
   );
 
   const actions = {
-    filterProducts,
-    refreshProducts,
+    dispatchPrice,
+    dispatchStatus,
+    dispatchFeatured,
   };
 
   return (
