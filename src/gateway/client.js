@@ -5,10 +5,10 @@ export const getProducts = async () => {
   return response.data.data.products;
 };
 
-export const updateProductStatus = async (id, status) => {
-  await axios.patch(`/product/${id}`, { status });
+export const updateProduct = async (id, payload) => {
+  await axios.patch(`/product/${id}`, payload);
 };
 
-export const updateProductPrice = async (id, price) => {
+export const updatePrice = async (id, price) => {
   await axios.patch(`/price/${id}`, { value: price });
 };

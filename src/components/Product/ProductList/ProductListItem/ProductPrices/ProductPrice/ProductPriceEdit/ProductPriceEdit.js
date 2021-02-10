@@ -54,9 +54,7 @@ const ProductPriceEdit = (props) => {
     updatePrice((prev) => {
       const prices = prev.filter((p) => p.id !== newPrice.id);
 
-      return [...prices, newPrice].sort((a, b) =>
-        a.measurement.localeCompare(b.measurement)
-      );
+      return [...prices, newPrice];
     });
   };
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { arrayOf, func, number, shape, string } from 'prop-types';
+import { func, string } from 'prop-types';
 
 const options = ['IN_STOCK', 'OUT_OF_SEASON', 'OUT_OF_STOCK'];
 
@@ -17,16 +17,7 @@ const ProductStatusEditWrapper = styled.div`
 `;
 
 const ProductStatusEdit = (props) => {
-  const { product, updateProduct } = props;
-
-  const updateStatus = (s) => {
-    const newProduct = {
-      ...product,
-      status: s,
-    };
-
-    updateProduct(newProduct);
-  };
+  const { status, updateStatus } = props;
 
   return (
     <ProductStatusEditWrapper>
@@ -34,7 +25,7 @@ const ProductStatusEdit = (props) => {
         onBlur={(e) => updateStatus(e.target.value)}
         onChange={(e) => updateStatus(e.target.value)}
         onClick={(e) => e.stopPropagation()}
-        value={product.status}
+        defaultValue={status}
       >
         {options.map((o) => (
           <option value={o} key={o}>
@@ -47,20 +38,8 @@ const ProductStatusEdit = (props) => {
 };
 
 ProductStatusEdit.propTypes = {
-  product: shape({
-    id: string.isRequired,
-    name: string.isRequired,
-    status: string.isRequired,
-    prices: arrayOf(
-      shape({
-        id: string.isRequired,
-        value: number.isRequired,
-        size: number.isRequired,
-        measurement: string.isRequired,
-      })
-    ).isRequired,
-  }).isRequired,
-  updateProduct: func.isRequired,
+  status: string.isRequired,
+  updateStatus: func.isRequired,
 };
 
 export default ProductStatusEdit;

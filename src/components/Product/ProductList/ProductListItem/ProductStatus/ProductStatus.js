@@ -1,5 +1,5 @@
 import React from 'react';
-import { arrayOf, bool, func, number, shape, string } from 'prop-types';
+import { bool, func, string } from 'prop-types';
 import styled from 'styled-components';
 
 import ProductStatusEdit from './ProductStatusEdit/ProductStatusEdit';
@@ -13,6 +13,7 @@ const ProductStatusWrapper = styled.div`
   color: ${(prop) => prop.color};
   text-align: left;
   padding-top: 10px;
+  transition: all 1s ease-out;
 
   @media (min-width: 959px) {
     font-size: 18px;
@@ -20,24 +21,24 @@ const ProductStatusWrapper = styled.div`
 `;
 
 const productStatus = (props) => {
-  const { isEditing, product, updateProduct } = props;
+  const { isEditing, status, updateStatus } = props;
 
   let color = 'green';
 
-  if (product.status === 'OUT_OF_STOCK') {
+  if (status === 'OUT_OF_STOCK') {
     color = 'red';
   }
 
-  if (product.status === 'OUT_OF_SEASON') {
+  if (status === 'OUT_OF_SEASON') {
     color = 'orange';
   }
 
   return (
     <ProductStatusWrapper color={color}>
       {isEditing ? (
-        <ProductStatusEdit product={product} updateProduct={updateProduct} />
+        <ProductStatusEdit status={status} updateStatus={updateStatus} />
       ) : (
-        product.status.replace(/[_-]/g, ' ')
+        status.replace(/[_-]/g, ' ')
       )}
     </ProductStatusWrapper>
   );
@@ -45,20 +46,8 @@ const productStatus = (props) => {
 
 productStatus.propTypes = {
   isEditing: bool.isRequired,
-  product: shape({
-    id: string.isRequired,
-    name: string.isRequired,
-    status: string.isRequired,
-    prices: arrayOf(
-      shape({
-        id: string.isRequired,
-        value: number.isRequired,
-        size: number.isRequired,
-        measurement: string.isRequired,
-      })
-    ).isRequired,
-  }).isRequired,
-  updateProduct: func.isRequired,
+  status: string.isRequired,
+  updateStatus: func.isRequired,
 };
 
 export default productStatus;

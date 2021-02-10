@@ -1,10 +1,6 @@
 import axiosMock from '../axios-client';
 
-import {
-  getProducts,
-  updateProductPrice,
-  updateProductStatus,
-} from '../client';
+import { getProducts, updateProduct, updatePrice } from '../client';
 
 describe('getProducts', () => {
   const products = [
@@ -70,17 +66,16 @@ describe('updateProductStatus', () => {
       .fn()
       .mockImplementationOnce(() => Promise.resolve({}));
 
-    await updateProductStatus(
-      '43d4c5a2-abee-4ae4-8490-c268e9bd8760',
-      'IN_STOCK'
-    );
+    const payload = {
+      status: 'IN_STOCK',
+    };
+
+    await updateProduct('43d4c5a2-abee-4ae4-8490-c268e9bd8760', payload);
 
     await expect(axiosMock.patch).toHaveBeenCalledTimes(1);
     await expect(axiosMock.patch).toHaveBeenCalledWith(
       '/product/43d4c5a2-abee-4ae4-8490-c268e9bd8760',
-      {
-        status: 'IN_STOCK',
-      }
+      payload
     );
   });
 
@@ -90,7 +85,7 @@ describe('updateProductStatus', () => {
       .fn()
       .mockImplementationOnce(() => Promise.reject(new Error(error)));
 
-    await expect(updateProductStatus()).rejects.toThrow(error);
+    await expect(updateProduct()).rejects.toThrow(error);
   });
 });
 
@@ -104,7 +99,7 @@ describe('updateProductPrice', () => {
       .fn()
       .mockImplementationOnce(() => Promise.resolve({}));
 
-    await updateProductPrice('43d4c5a2-abee-4ae4-8490-c268e9bd8760', 100);
+    await updatePrice('43d4c5a2-abee-4ae4-8490-c268e9bd8760', 100);
 
     await expect(axiosMock.patch).toHaveBeenCalledTimes(1);
     await expect(axiosMock.patch).toHaveBeenCalledWith(
@@ -121,6 +116,6 @@ describe('updateProductPrice', () => {
       .fn()
       .mockImplementationOnce(() => Promise.reject(new Error(error)));
 
-    await expect(updateProductPrice()).rejects.toThrow(error);
+    await expect(updatePrice()).rejects.toThrow(error);
   });
 });

@@ -1,9 +1,8 @@
-import React, { useContext, useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
+import { func, string } from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
-
-import { ProductActionContext } from '../../../context/ProductContext';
 
 const ProductSearchWrapper = styled.div`
   display: flex;
@@ -40,14 +39,8 @@ const ProductSearchWrapper = styled.div`
   }
 `;
 
-const ProductSearch = () => {
-  const [search, setSearch] = useState('');
-  const { filterProducts } = useContext(ProductActionContext);
-
-  const updateValue = (s) => {
-    setSearch(s);
-    filterProducts(s);
-  };
+const ProductSearch = (props) => {
+  const { search, updateSearch } = props;
 
   return (
     <ProductSearchWrapper>
@@ -55,15 +48,20 @@ const ProductSearch = () => {
         type="text"
         placeholder="Filter products..."
         value={search}
-        onChange={(e) => updateValue(e.target.value)}
+        onChange={(e) => updateSearch(e.target.value)}
       />
       <FontAwesomeIcon
         icon={faTimes}
         size="1x"
-        onClick={() => updateValue('')}
+        onClick={() => updateSearch('')}
       />
     </ProductSearchWrapper>
   );
+};
+
+ProductSearch.propTypes = {
+  search: string.isRequired,
+  updateSearch: func.isRequired,
 };
 
 export default ProductSearch;
