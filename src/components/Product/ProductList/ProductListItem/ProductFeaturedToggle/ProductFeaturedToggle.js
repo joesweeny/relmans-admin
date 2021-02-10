@@ -6,7 +6,7 @@ import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
 
 import { ProductActionContext } from '../../../../../context/ProductContext';
 
-const ProductToggleWrapper = styled.div`
+const ProductFeaturedToggleWrapper = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
@@ -42,13 +42,13 @@ const ProductFeaturedToggle = (props) => {
   const { dispatchFeatured } = useContext(ProductActionContext);
 
   return (
-    <ProductToggleWrapper featured={featured}>
+    <ProductFeaturedToggleWrapper featured={featured}>
       <FontAwesomeIcon
         icon={faCheckCircle}
         color={featured ? '#f1943c' : 'white'}
         onClick={() => dispatchFeatured(id, !featured)}
       />
-    </ProductToggleWrapper>
+    </ProductFeaturedToggleWrapper>
   );
 };
 
