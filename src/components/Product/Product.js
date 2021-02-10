@@ -3,7 +3,6 @@ import styled from 'styled-components';
 
 import ProductContextProvider from '../../context/ProductContext';
 import ProductList from './ProductList/ProductList';
-import ProductSearch from './ProductSearch/ProductSearch';
 
 const ProductWrapper = styled.div`
   display: flex;
@@ -24,7 +23,6 @@ const Product = () => {
   return (
     <ProductContextProvider>
       <ProductWrapper>
-        <ProductSearch />
         <ProductList />
       </ProductWrapper>
     </ProductContextProvider>
