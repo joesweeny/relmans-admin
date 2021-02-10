@@ -16,7 +16,7 @@ const ProductListItemWrapper = styled.div`
   justify-content: space-between;
   height: fit-content;
   align-items: center;
-  background-color: #ffffff;
+  background-color: ${(props) => (props.editing ? '#d6d6d6' : '#ffffff')};
   border-radius: 5px;
   box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.23);
   color: black;
@@ -24,6 +24,10 @@ const ProductListItemWrapper = styled.div`
   width: 100%;
   padding: 0;
   margin: 5px 10px 5px 0;
+
+  &:hover {
+    background-color: #d6d6d6;
+  }
 
   @media (min-width: 758px) {
     flex-direction: row;
@@ -85,7 +89,7 @@ const ProductListItem = (props) => {
   };
 
   return (
-    <ProductListItemWrapper>
+    <ProductListItemWrapper editing={isEditing}>
       <ProductDataWrapper onClick={() => toggleEdit()}>
         <ProductImage id={product.id} name={product.name} />
         <ProductInformationWrapper>
