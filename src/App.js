@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
+import Login from './components/Login/Login';
 import Routes from './components/Routes/Routes';
 import ToolBar from './components/Toolbar/Toolbar';
 import ErrorBoundary from './components/ErrorBoundary/ErrorBoundary';
@@ -13,6 +14,12 @@ const Container = styled.div`
 `;
 
 const App = () => {
+  const [token, setToken] = useState();
+
+  if (!token) {
+    return <Login login={setToken} />;
+  }
+
   return (
     <Container>
       <ToolBar />

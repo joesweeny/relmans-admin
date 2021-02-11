@@ -28,6 +28,16 @@
     "no-underscore-dangle" : [0, "always"],
     "react/jsx-filename-extension": ["warn", { "extensions": [".js", ".jsx"] }],
     "prettier/prettier": ["error"],
-    "space-in-parens": [ 0, "always" ]
+    "space-in-parens": [ 0, "always" ],
+    "jsx-a11y/label-has-associated-control": [
+      "error",
+      {
+        "labelComponents": [],
+        "labelAttributes": [],
+        "controlComponents": [],
+        "assert": "both",
+        "depth": 25
+      }
+    ]
   }
 }
