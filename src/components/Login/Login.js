@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { func } from 'prop-types';
+import { AuthenticationDetails, CognitoUser } from 'amazon-cognito-identity-js';
 
 import Logo from '../Logo/Logo';
+import UserPool from '../../config/user';
 
 const LoginWrapper = styled.div`
   display: flex;
@@ -52,6 +54,36 @@ const LabelWrapper = styled.label`
 
 const Login = (props) => {
   const { login } = props;
+  const [email, setEmail] = useState(null);
+  const [password, setPassword] = useState(null);
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+
+    const user = new CognitoUser({
+      Username: email,
+      Pool: UserPool,
+    });
+
+    const authDetails = new AuthenticationDetails({
+      Username: email,
+      Password: password,
+    });
+
+    user.authenticateUser(authDetails, {
+      onSuccess: (data) => {
+        console.log('onSuccess', data);
+      },
+
+      onFailure: (error) => {
+        console.log('onFailure', error);
+      },
+
+      newPasswordRequired: (data) => {
+        console.log('newPasswordRequired', data);
+      },
+    });
+  };
 
   return (
     <LoginWrapper>
@@ -59,14 +91,22 @@ const Login = (props) => {
       <FormWrapper>
         <LabelWrapper htmlFor="username">
           Email
-          <input id="username" type="text" />
+          <input
+            id="username"
+            type="text"
+            onChange={(e) => setEmail(e.target.value)}
+          />
         </LabelWrapper>
         <LabelWrapper htmlFor="password">
           Password
-          <input id="password" type="password" />
+          <input
+            id="password"
+            type="password"
+            onChange={(e) => setPassword(e.target.value)}
+          />
         </LabelWrapper>
         <div>
-          <button type="submit" onClick={() => login(true)}>
+          <button type="submit" onClick={(e) => onSubmit(e)}>
             Submit
           </button>
         </div>
