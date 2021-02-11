@@ -1,3 +1,4 @@
+import { Auth } from 'aws-amplify';
 import axios from './axios-client';
 
 export const getProducts = async () => {
@@ -6,9 +7,25 @@ export const getProducts = async () => {
 };
 
 export const updateProduct = async (id, payload) => {
-  await axios.patch(`/product/${id}`, payload);
+  const token = (await Auth.currentSession()).getIdToken().getJwtToken();
+
+  await axios.patch(`/product/${id}`, payload, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
 };
 
 export const updatePrice = async (id, price) => {
-  await axios.patch(`/price/${id}`, { value: price });
+  const token = (await Auth.currentSession()).getIdToken().getJwtToken();
+
+  await axios.patch(
+    `/price/${id}`,
+    { value: price },
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }
+  );
 };
