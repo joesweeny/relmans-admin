@@ -6,7 +6,7 @@ import Product from '../Product/Product';
 const routes = () => (
   <BrowserRouter>
     <Switch>
-      <Route path="/" exact component={Product} />
+      <Route path="/products" exact component={Product} />
       <Redirect to="/" />
     </Switch>
   </BrowserRouter>
