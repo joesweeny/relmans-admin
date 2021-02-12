@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 
 import Login from './components/Login/Login';
 import Routes from './components/Routes/Routes';
 import ToolBar from './components/Toolbar/Toolbar';
 import ErrorBoundary from './components/ErrorBoundary/ErrorBoundary';
+import useAuthenticatesUser from './hooks/useAuthenticatesUser';
 
 const Container = styled.div`
   display: flex;
@@ -14,10 +15,10 @@ const Container = styled.div`
 `;
 
 const App = () => {
-  const [token, setToken] = useState();
+  const { isAuthenticated, loading, login, error } = useAuthenticatesUser();
 
-  if (!token) {
-    return <Login login={setToken} />;
+  if (!isAuthenticated) {
+    return <Login login={login} loading={loading} error={error} />;
   }
 
   return (

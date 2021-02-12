@@ -2,7 +2,7 @@ import axiosMock from '../axios-client';
 
 import { getProducts, updateProduct, updatePrice } from '../client';
 
-describe('getProducts', () => {
+describe.skip('getProducts', () => {
   const products = [
     {
       id: '1e2bbdd0-b3e8-45cc-bdaf-fecd21c4e23b',
@@ -56,7 +56,7 @@ describe('getProducts', () => {
   });
 });
 
-describe('updateProductStatus', () => {
+describe.skip('updateProductStatus', () => {
   afterEach(() => {
     jest.resetAllMocks();
   });
@@ -89,7 +89,7 @@ describe('updateProductStatus', () => {
   });
 });
 
-describe('updateProductPrice', () => {
+describe.skip('updateProductPrice', () => {
   afterEach(() => {
     jest.resetAllMocks();
   });
