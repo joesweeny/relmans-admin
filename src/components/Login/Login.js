@@ -33,7 +33,7 @@ const FormWrapper = styled.form`
     font-size: 18px;
     color: #000000;
     border-radius: 10px;
-    padding-top: 8px;
+    padding-top: 5px;
     padding-bottom: 8px;
     padding-left: 10px;
     padding-right: 10px;
@@ -72,6 +72,8 @@ const LabelWrapper = styled.label`
   display: flex;
   flex-direction: column;
   text-align: center;
+  text-transform: uppercase;
+  font-size: 16px;
 `;
 
 const Login = (props) => {
