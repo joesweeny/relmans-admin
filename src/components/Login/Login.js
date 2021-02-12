@@ -17,21 +17,37 @@ const LoginWrapper = styled.div`
   text-align: center;
 
   p {
-    color: #f13737;
+    color: #ff4826;
   }
 `;
 
 const FormWrapper = styled.form`
   width: 80%;
+  margin-bottom: 40px;
 
   input {
     margin: 10px;
     text-align: center;
+    background-color: #ffffff;
+    border: solid 2px #1c1c1c;
+    font-size: 18px;
+    color: #000000;
+    border-radius: 10px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    padding-left: 10px;
+    padding-right: 10px;
   }
 
   button {
     width: 60%;
     cursor: pointer;
+    border: solid 2px #1c1c1c;
+    border-radius: 10px;
+    padding: 5px;
+    background-color: #f1943c;
+    font-size: 16px;
+    text-transform: uppercase;
   }
 
   div {
@@ -43,10 +59,12 @@ const FormWrapper = styled.form`
 
   @media (min-width: 758px) {
     width: 60%;
+    margin-bottom: 20px;
   }
 
   @media (min-width: 959px) {
-    width: 30%;
+    width: 20%;
+    margin-bottom: 100px;
   }
 `;
 
