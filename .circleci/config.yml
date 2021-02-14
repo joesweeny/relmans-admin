@@ -16,8 +16,8 @@ jobs:
           command: npm run test
 
   deploy:
-    docker:
-      - image: 'circleci/python:3.7.1'
+    executor:
+      name: node/default
     steps:
       - run:
         command: npm run build
