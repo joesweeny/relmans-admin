@@ -30,9 +30,9 @@ jobs:
       - aws-cli/setup
       - run:
           name: Upload build files
-          command: aws s3 sync build {$S3_BUCKET} --acl public-read --delete
+          command: aws s3 sync build ${S3_BUCKET} --acl public-read --delete
       - run:
-          name: "Invalidate CloudFront Cache"
+          name: Invalidate CloudFront Cache
           command: |
             aws cloudfront create-invalidation --distribution-id ${AWS_CLOUDFRONT_DISTRIBUTION} --paths "/*"
 
