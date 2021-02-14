@@ -3,31 +3,45 @@ orbs:
   node: circleci/node@4.1.0
   aws-s3: circleci/aws-s3@2.0.0
 
+references:
+  workspace_root: &workspace_root
+    /tmp/workspace
+  attach_workspace: &attach_workspace
+    attach_workspace:
+      at: *workspace_root
+
 jobs:
   build-and-test:
     executor:
       name: node/default
     steps:
+      - *attach_workspace
       - checkout
       - node/install-packages
       - run:
           command: npm run lint
       - run:
           command: npm run test
+      - run:
+          command: npm run build
+      - persist_to_workspace:
+          root: *workspace_root
+          paths:
+            - build/*
 
   deploy:
-    executor:
-      name: node/default
+    docker:
+      - image: 'circleci/python:3.7.1'
     steps:
-      - run:
-        command: npm run build
+      - *attach_workspace
+      - aws-cli/setup
       - aws-s3/sync:
           from: build
           to: ${AWS_S3_BUCKET}
           arguments: |
             --acl public-read \
-            --cache-control "max-age=86400"
-          overwrite: true
+            --cache-control "max-age=86400 \
+            --delete"
       - run:
           name: "Invalidate CloudFront Cache"
           command: |
