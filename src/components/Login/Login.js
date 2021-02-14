@@ -26,28 +26,31 @@ const FormWrapper = styled.form`
   margin-bottom: 40px;
 
   input {
-    margin: 10px;
+    margin: 5px 0 10px 0;
     text-align: center;
-    background-color: #ffffff;
-    border: solid 2px #1c1c1c;
-    font-size: 18px;
-    color: #000000;
-    border-radius: 10px;
-    padding-top: 5px;
-    padding-bottom: 8px;
-    padding-left: 10px;
-    padding-right: 10px;
+    font-size: 20px;
+    font-family: inherit;
+    border: 0;
+    border-bottom: 2px solid #cecbcbee;
+    color: #cecbcbee;
+    outline: 0;
+    padding: 7px 5px;
+    background: transparent;
   }
 
   button {
     width: 60%;
     cursor: pointer;
-    border: solid 2px #1c1c1c;
-    border-radius: 10px;
+    border: none;
     padding: 5px;
-    background-color: #f1943c;
-    font-size: 16px;
+    background: transparent;
+    font-size: 24px;
     text-transform: uppercase;
+    color: #cecbcbee;
+
+    &:hover {
+      color: #f1943c;
+    }
   }
 
   div {
