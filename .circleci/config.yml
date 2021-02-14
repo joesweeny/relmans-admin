@@ -4,19 +4,11 @@ orbs:
   aws-cli: circleci/aws-cli@0.1.20
   aws-s3: circleci/aws-s3@2.0.0
 
-references:
-  workspace_root: &workspace_root
-    /tmp/workspace
-  attach_workspace: &attach_workspace
-    attach_workspace:
-      at: *workspace_root
-
 jobs:
   build-and-test:
     executor:
       name: node/default
     steps:
-      - *attach_workspace
       - checkout
       - node/install-packages
       - run:
@@ -26,7 +18,7 @@ jobs:
       - run:
           command: npm run build
       - persist_to_workspace:
-          root: *workspace_root
+          root: .
           paths:
             - build/*
 
@@ -34,7 +26,8 @@ jobs:
     docker:
       - image: 'circleci/python:3.7.1'
     steps:
-      - *attach_workspace
+      - attach_workspace:
+          at: build
       - aws-cli/setup
       - aws-s3/sync:
           from: build
