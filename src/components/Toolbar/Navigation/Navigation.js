@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import NavigationItem from './NavigationItem/NavigationItem';
+
 const NavigationWrapper = styled.div`
   display: flex;
   flex-direction: row;
@@ -29,8 +31,8 @@ const NavigationWrapper = styled.div`
 const navigation = () => {
   return (
     <NavigationWrapper>
-      <p>Products</p>
-      <p>Orders</p>
+      <NavigationItem link="/products" title="Products" />
+      <NavigationItem link="/orders" title="Orders" />
     </NavigationWrapper>
   );
 };

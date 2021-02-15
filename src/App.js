@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { BrowserRouter } from 'react-router-dom';
 
 import Login from './components/Login/Login';
 import Routes from './components/Routes/Routes';
@@ -23,10 +24,12 @@ const App = () => {
 
   return (
     <Container>
-      <ToolBar />
-      <ErrorBoundary>
-        <Routes />
-      </ErrorBoundary>
+      <BrowserRouter>
+        <ToolBar />
+        <ErrorBoundary>
+          <Routes />
+        </ErrorBoundary>
+      </BrowserRouter>
     </Container>
   );
 };
