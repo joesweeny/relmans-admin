@@ -10,9 +10,7 @@ import Backdrop from './Backdrop';
 import ModalWrapper from './ModalWrapper';
 
 const Header = styled.div`
-  display: -webkit-flex
   display: flex;
-  flex-shrink: 0;
   flex-direction: row;
   justify-content: center;
   margin-bottom: 20px;
