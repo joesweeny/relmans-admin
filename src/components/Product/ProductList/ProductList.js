@@ -22,15 +22,11 @@ const ProductListWrapper = styled.div`
   -ms-flex-pack: start;
   justify-content: flex-start;
   -ms-flex-line-pack: center;
-  align-content: center;
+  flex-shrink: 0;
   padding-bottom: 30px;
   width: 100%;
 
   @media (min-width: 959px) {
-    -webkit-flex-wrap: wrap;
-    -ms-flex-wrap: wrap;
-    flex-wrap: wrap;
-    justify-content: flex-start;
     align-items: center;
   }
 `;
