@@ -6,7 +6,9 @@ import Loader from '../Loader/Loader';
 import Logo from '../Logo/Logo';
 
 const LoginWrapper = styled.div`
+  display: -webkit-flex
   display: flex;
+  flex-shrink: 0;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -72,7 +74,9 @@ const FormWrapper = styled.form`
 `;
 
 const LabelWrapper = styled.label`
+  display: -webkit-flex
   display: flex;
+  flex-shrink: 0;
   flex-direction: column;
   text-align: center;
   text-transform: uppercase;
