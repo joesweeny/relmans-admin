@@ -12,6 +12,7 @@ import {
 
 const ProductListWrapper = styled.div`
   display: flex;
+  flex-shrink: 0
   flex-direction: column;
   justify-content: flex-start;
   align-content: center;

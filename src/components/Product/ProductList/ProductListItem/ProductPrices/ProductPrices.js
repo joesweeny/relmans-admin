@@ -6,6 +6,7 @@ import ProductPrice from './ProductPrice/ProductPrice';
 
 const ProductPricesWrapper = styled.div`
   display: flex;
+  flex-shrink: 0
   flex-direction: column;
   justify-content: flex-start;
   width: 100%;

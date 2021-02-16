@@ -8,6 +8,7 @@ import { ProductActionContext } from '../../../../../context/ProductContext';
 
 const ProductFeaturedToggleWrapper = styled.div`
   display: flex;
+  flex-shrink: 0
   flex-direction: row;
   justify-content: flex-end;
   width: 100%;
