@@ -22,6 +22,7 @@ const ProductListWrapper = styled.div`
   -ms-flex-pack: start;
   justify-content: flex-start;
   -ms-flex-line-pack: center;
+  flex-shrink: 0;
   padding-bottom: 30px;
   width: 100%;
 
