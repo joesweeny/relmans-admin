@@ -5,7 +5,9 @@ import ProductContextProvider from '../../context/ProductContext';
 import ProductList from './ProductList/ProductList';
 
 const ProductWrapper = styled.div`
+  display: -webkit-flex
   display: flex;
+  flex-shrink: 0;
   flex-direction: column;
   justify-content: space-between;
   align-content: center;

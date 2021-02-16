@@ -8,6 +8,7 @@ import Logo from '../Logo/Logo';
 import Navigation from './Navigation/Navigation';
 
 const ToolbarWrapper = styled.div`
+  display: -webkit-flex
   display: flex;
   flex-shrink: 0
   flex-direction: row;

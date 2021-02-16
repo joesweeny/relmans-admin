@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import ProductPrice from './ProductPrice/ProductPrice';
 
 const ProductPricesWrapper = styled.div`
+  display: -webkit-flex
   display: flex;
   flex-shrink: 0
   flex-direction: column;

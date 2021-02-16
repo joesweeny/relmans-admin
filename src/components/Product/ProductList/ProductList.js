@@ -11,6 +11,7 @@ import {
 } from '../../../context/ProductContext';
 
 const ProductListWrapper = styled.div`
+  display: -webkit-flex
   display: flex;
   flex-shrink: 0
   flex-direction: column;
