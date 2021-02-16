@@ -11,15 +11,24 @@ import {
 } from '../../../context/ProductContext';
 
 const ProductListWrapper = styled.div`
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
   flex-direction: column;
+  -webkit-box-pack: start;
+  -ms-flex-pack: start;
   justify-content: flex-start;
+  -ms-flex-line-pack: center;
   align-content: center;
   padding-bottom: 30px;
   width: 100%;
 
   @media (min-width: 959px) {
     -webkit-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
     flex-wrap: wrap;
     justify-content: flex-start;
     align-items: center;
