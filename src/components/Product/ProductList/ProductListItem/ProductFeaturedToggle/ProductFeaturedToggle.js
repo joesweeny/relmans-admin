@@ -31,13 +31,14 @@ const ProductFeaturedToggleWrapper = styled.div`
     justify-content: center;
     align-items: center;
     width: 10%;
-    height: 100%;
+    height: 80px;
     padding: 0;
     font-size: 22px;
   }
 
   @media (min-width: 959px) {
     font-size: 30px;
+    height: 120px;
   }
 `;
 
