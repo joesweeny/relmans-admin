@@ -1,5 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
+import { bool, func } from 'prop-types';
+import { faBars } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import Logo from '../Logo/Logo';
 import Navigation from './Navigation/Navigation';
@@ -7,23 +10,43 @@ import Navigation from './Navigation/Navigation';
 const ToolbarWrapper = styled.div`
   display: flex;
   flex-direction: row;
+  align-items: center;
   justify-content: space-between;
   background-color: #3d604c;
   height: 80px;
   width: 100%;
 
-  @media (max-width: 768px) {
-    justify-content: center;
+  svg {
+    margin-right: 15px;
+  }
+
+  @media (min-width: 768px) {
+    svg {
+      display: none;
+    }
   }
 `;
 
-const toolbar = () => {
+const Toolbar = (props) => {
+  const { menuOpen, clickMenu } = props;
+
   return (
     <ToolbarWrapper>
       <Logo />
       <Navigation />
+      <FontAwesomeIcon
+        color={menuOpen ? '#f1943c' : '#ffffff'}
+        icon={faBars}
+        size="2x"
+        onClick={() => clickMenu(!menuOpen)}
+      />
     </ToolbarWrapper>
   );
 };
 
-export default toolbar;
+Toolbar.propTypes = {
+  menuOpen: bool.isRequired,
+  clickMenu: func.isRequired,
+};
+
+export default Toolbar;
