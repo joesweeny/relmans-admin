@@ -11,7 +11,7 @@ export const updateProduct = async (id, payload) => {
 
   await axios.patch(`/product/${id}`, payload, {
     headers: {
-      Authorization: `Bearer ${token}`,
+      Authorization: `${token}`,
     },
   });
 };
@@ -24,7 +24,7 @@ export const updatePrice = async (id, price) => {
     { value: price },
     {
       headers: {
-        Authorization: `Bearer ${token}`,
+        Authorization: `${token}`,
       },
     }
   );
