@@ -11,9 +11,7 @@ import {
 } from '../../../context/ProductContext';
 
 const ProductListWrapper = styled.div`
-  display: -webkit-flex
   display: flex;
-  flex-shrink: 0
   flex-direction: column;
   justify-content: flex-start;
   align-content: center;
@@ -21,6 +19,7 @@ const ProductListWrapper = styled.div`
   width: 100%;
 
   @media (min-width: 959px) {
+    -webkit-flex-wrap: wrap;
     flex-wrap: wrap;
     justify-content: flex-start;
     align-items: center;

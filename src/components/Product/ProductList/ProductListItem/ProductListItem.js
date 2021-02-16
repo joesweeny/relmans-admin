@@ -11,9 +11,7 @@ import ProductFeaturedToggle from './ProductFeaturedToggle/ProductFeaturedToggle
 import { ProductActionContext } from '../../../../context/ProductContext';
 
 const ProductListItemWrapper = styled.div`
-  display: -webkit-flex
   display: flex;
-  flex-shrink: 0
   flex-direction: column;
   justify-content: space-between;
   height: fit-content;
@@ -38,9 +36,7 @@ const ProductListItemWrapper = styled.div`
 `;
 
 const ProductDataWrapper = styled.div`
-  display: -webkit-flex
   display: flex;
-  flex-shrink: 0
   flex-direction: row;
   justify-content: space-between;
   width: 100%;
@@ -53,9 +49,7 @@ const ProductDataWrapper = styled.div`
 `;
 
 const ProductInformationWrapper = styled.div`
-  display: -webkit-flex
   display: flex;
-  flex-shrink: 0
   flex-direction: column;
   justify-content: space-between;
   width: 100%;

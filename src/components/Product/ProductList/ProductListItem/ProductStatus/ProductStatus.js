@@ -5,9 +5,7 @@ import styled from 'styled-components';
 import ProductStatusEdit from './ProductStatusEdit/ProductStatusEdit';
 
 const ProductStatusWrapper = styled.div`
-  display: -webkit-flex
   display: flex;
-  flex-shrink: 0
   flex-direction: row;
   justify-content: left;
   width: 100%;
