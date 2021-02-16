@@ -9,6 +9,7 @@ import Navigation from './Navigation/Navigation';
 
 const ToolbarWrapper = styled.div`
   display: flex;
+  flex-shrink: 0
   flex-direction: row;
   align-items: center;
   justify-content: space-between;

@@ -5,6 +5,7 @@ import NavigationItem from './NavigationItem/NavigationItem';
 
 const NavigationWrapper = styled.div`
   display: flex;
+  flex-shrink: 0
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
