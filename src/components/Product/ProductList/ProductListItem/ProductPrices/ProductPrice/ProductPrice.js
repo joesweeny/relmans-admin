@@ -6,6 +6,7 @@ import ProductPriceEdit from './ProductPriceEdit/ProductPriceEdit';
 import displayMeasurement from '../../../../../../utility/display';
 
 const ProductPriceWrapper = styled.div`
+  display: -webkit-flex;
   display: flex;
   flex-direction: row;
   justify-content: flex-end;

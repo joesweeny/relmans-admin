@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
 const ProductSearchWrapper = styled.div`
+  display: -webkit-flex;
   display: flex;
   flex-shrink: 0
   flex-direction: row;

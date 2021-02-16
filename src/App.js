@@ -10,8 +10,10 @@ import ErrorBoundary from './components/ErrorBoundary/ErrorBoundary';
 import useAuthenticatesUser from './hooks/useAuthenticatesUser';
 
 const Container = styled.div`
-  display: flex;
+  display: -webkit-flex;
+  display: -webkit-flex;
   flex-direction: column;
+  flex-shrink: 0;
   height: 100vh;
   max-width: 100vw;
 `;

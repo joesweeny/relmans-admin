@@ -4,8 +4,10 @@ import styled from 'styled-components';
 import NavigationItem from './NavigationItem/NavigationItem';
 
 const NavigationWrapper = styled.div`
+  display: -webkit-flex;
   display: flex;
   flex-direction: row;
+  flex-shrink: 0;
   justify-content: space-between;
   align-items: center;
   max-width: 100%;

@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import NavigationItem from '../Navigation/NavigationItem/NavigationItem';
 
 const MenuWrapper = styled.div`
+  display: ${(props) => (props.open ? '-webkit-flex' : 'none')};
   display: ${(props) => (props.open ? 'flex' : 'none')};
   flex-direction: column;
   position: fixed;

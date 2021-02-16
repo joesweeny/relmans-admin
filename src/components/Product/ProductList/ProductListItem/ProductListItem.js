@@ -11,8 +11,10 @@ import ProductFeaturedToggle from './ProductFeaturedToggle/ProductFeaturedToggle
 import { ProductActionContext } from '../../../../context/ProductContext';
 
 const ProductListItemWrapper = styled.div`
+  display: -webkit-flex;
   display: flex;
   flex-direction: column;
+  flex-shrink: 0;
   justify-content: space-between;
   height: fit-content;
   align-items: center;
@@ -36,6 +38,7 @@ const ProductListItemWrapper = styled.div`
 `;
 
 const ProductDataWrapper = styled.div`
+  display: -webkit-flex;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -49,6 +52,7 @@ const ProductDataWrapper = styled.div`
 `;
 
 const ProductInformationWrapper = styled.div`
+  display: -webkit-flex;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
