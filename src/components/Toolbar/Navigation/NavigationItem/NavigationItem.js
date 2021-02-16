@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { string } from 'prop-types';
+import { func, string } from 'prop-types';
 import { NavLink } from 'react-router-dom';
 
 const StyledLink = styled(NavLink)`
@@ -15,7 +15,7 @@ const StyledLink = styled(NavLink)`
 `;
 
 const NavigationItem = (props) => {
-  const { link, title } = props;
+  const { link, click, title } = props;
 
   return (
     <StyledLink
@@ -25,6 +25,7 @@ const NavigationItem = (props) => {
         fontWeight: 'bold',
         color: '#f1943c',
       }}
+      onClick={click ? () => click() : () => {}}
     >
       {title}
     </StyledLink>
@@ -34,6 +35,11 @@ const NavigationItem = (props) => {
 NavigationItem.propTypes = {
   link: string.isRequired,
   title: string.isRequired,
+  click: func,
+};
+
+NavigationItem.defaultProps = {
+  click: null,
 };
 
 export default NavigationItem;
