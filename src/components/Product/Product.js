@@ -5,8 +5,10 @@ import ProductContextProvider from '../../context/ProductContext';
 import ProductList from './ProductList/ProductList';
 
 const ProductWrapper = styled.div`
+  display: -webkit-box;
   display: flex;
   flex-direction: column;
+  flex-shrink: 0;
   justify-content: space-between;
   align-content: center;
   margin: 10px;

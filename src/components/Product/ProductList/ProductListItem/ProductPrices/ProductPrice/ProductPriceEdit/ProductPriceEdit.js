@@ -3,8 +3,10 @@ import styled from 'styled-components';
 import { func, number, shape, string } from 'prop-types';
 
 const ProductPriceEditWrapper = styled.div`
+  display: -webkit-flex;
   display: flex;
   flex-direction: row;
+  flex-shrink: 0;
   justify-content: flex-end;
   align-items: center;
 

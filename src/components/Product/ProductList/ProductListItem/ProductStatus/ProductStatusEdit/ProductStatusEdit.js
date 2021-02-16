@@ -5,8 +5,10 @@ import { func, string } from 'prop-types';
 const options = ['IN_STOCK', 'OUT_OF_SEASON', 'OUT_OF_STOCK'];
 
 const ProductStatusEditWrapper = styled.div`
+  display: -webkit-flex;
   display: flex;
   flex-direction: row;
+  flex-shrink: 0;
   justify-content: flex-start;
   width: 100%;
 
