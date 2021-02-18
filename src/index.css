@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Dosis:wght@600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@500&display=swap');
 
 /* Box sizing rules */
 *,
@@ -82,7 +82,7 @@ select {
 
 body {
   background-color: #cecbcbee;
-  font-family: 'Dosis', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-style: normal;
   font-weight: normal;
   font-size: 20px;

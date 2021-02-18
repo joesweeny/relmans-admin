@@ -31,7 +31,7 @@ const ProductPriceWrapper = styled.div`
 
       :last-child {
         font-size: 26px;
-        padding-left: 20px;
+        padding-left: 10px;
         padding-right: 30px;
       }
     }

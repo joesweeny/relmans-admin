@@ -20,7 +20,7 @@ const productImage = (props) => {
 
   return (
     <ProductImageWrapper
-      src={`https://relmans.s3.eu-west-2.amazonaws.com/products/${id}.jpg`}
+      src={`${process.env.PUBLIC_URL}/products/fruitandveg.jpg`}
       alt={name}
     />
   );
