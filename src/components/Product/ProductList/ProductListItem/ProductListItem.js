@@ -22,7 +22,7 @@ const ProductListItemWrapper = styled.div`
   border-radius: 5px;
   box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.23);
   color: black;
-  font-weight: 600;
+  font-weight: 500;
   width: 100%;
   padding: 0;
   margin: 5px 10px 5px 0;
