@@ -29,3 +29,15 @@ export const updatePrice = async (id, price) => {
     }
   );
 };
+
+export const getOrders = async () => {
+  const token = (await Auth.currentSession()).getIdToken().getJwtToken();
+
+  const response = await axios.get('/order', {
+    headers: {
+      Authorization: `${token}`,
+    },
+  });
+
+  return response.data.data.orders;
+};
