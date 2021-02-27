@@ -7,7 +7,7 @@ const OrderAddressWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  width: 100%;
+  width: 48%;
 
   p {
     font-size: 12px;

@@ -7,7 +7,7 @@ const OrderDetailsItemWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  width: 50%;
+  width: 48%;
 
   p {
     font-size: 10px;
@@ -16,6 +16,7 @@ const OrderDetailsItemWrapper = styled.div`
 
   span {
     font-size: 12px;
+    word-wrap: break-word;
   }
 
   @media (min-width: 959px) {

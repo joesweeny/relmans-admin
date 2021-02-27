@@ -28,9 +28,14 @@ const OrderItemWrapper = styled.div`
 `;
 
 const Image = styled.img`
-  height: 50px;
-  width: 50px;
+  height: 30px;
+  width: 30px;
   border-radius: 10px;
+
+  @media (min-width: 1024px) {
+    height: 50px;
+    width: 50px;
+  }
 `;
 
 const OrderItem = (props) => {

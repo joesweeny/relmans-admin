@@ -38,6 +38,10 @@ const OrderListItem = (props) => {
   const [open, setOpen] = useState(false);
 
   const order = orders.find((o) => o.id === id);
+  const total = order.items.reduce(
+    (prev, next) => prev + next.quantity * next.price,
+    0
+  );
   const { date, type } = order.method;
   const fulfilmentDate = new Date(date);
 
@@ -47,10 +51,15 @@ const OrderListItem = (props) => {
         title="Customer"
         value={`${order.customer.firstName} ${order.customer.lastName}`}
       />
+      <OrderListItemDisplay title="Phone" value={order.customer.phone} />
+      <OrderListItemDisplay title="Type" value={type} />
       <OrderListItemDisplay title="Status" value={order.status} />
-      <OrderListItemDisplay title="Fulfilment Type" value={type} />
       <OrderListItemDisplay
-        title="Fulfilment Date"
+        title="Total"
+        value={`£${(total / 100).toFixed(2)}`}
+      />
+      <OrderListItemDisplay
+        title="Date"
         value={fulfilmentDate.toLocaleDateString()}
       />
       {open ? <OrderInformation id={id} /> : null}

@@ -7,11 +7,13 @@ const OrderListItemDisplayWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  font-size: 12px;
-  width: 25%;
+  font-size: 10px;
+  width: 30%;
+  padding: 0;
 
   @media (min-width: 758px) {
     font-size: 18px;
+    padding: 5px 0 5px 0;
   }
 `;
 

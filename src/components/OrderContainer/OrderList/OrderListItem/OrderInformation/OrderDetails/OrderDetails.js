@@ -14,6 +14,7 @@ const OrderDetailsWrapper = styled.div`
   justify-content: flex-start;
   width: 100%;
   padding: 10px 0 10px 0;
+  height: fit-content;
 
   @media (min-width: 1024px) {
     width: 48%;
@@ -27,7 +28,7 @@ const OrderDetails = (props) => {
 
   const order = orders.find((o) => o.id === id);
   const { type } = order.method;
-  const { address, email, phone } = order.customer;
+  const { address, email } = order.customer;
 
   return (
     <OrderDetailsWrapper>
@@ -36,9 +37,8 @@ const OrderDetails = (props) => {
         title="PayPal Transaction ID"
         value={order.transactionId}
       />
-      <OrderDetailsItem title="Phone" value={phone} />
-      <OrderDetailsItem title="Email" value={email} />
       {type === 'DELIVERY' ? <OrderAddress address={address} /> : null}
+      <OrderDetailsItem title="Email" value={email} />
     </OrderDetailsWrapper>
   );
 };
