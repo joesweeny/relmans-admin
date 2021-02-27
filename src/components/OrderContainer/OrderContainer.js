@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 import OrderContextProvider from '../../context/OrderContext';
+import OrderList from './OrderList/OrderList';
 
 const OrderContainerWrapper = styled.div`
   display: -webkit-box;
@@ -18,7 +19,7 @@ const OrderContainer = () => {
   return (
     <OrderContextProvider>
       <OrderContainerWrapper>
-        <p>Hello from the orders component</p>
+        <OrderList />
       </OrderContainerWrapper>
     </OrderContextProvider>
   );
