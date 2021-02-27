@@ -37,7 +37,20 @@ export const getOrders = async () => {
     headers: {
       Authorization: `${token}`,
     },
+    params: {
+      orderBy: 'created_at_desc',
+    },
   });
 
   return response.data.data.orders;
+};
+
+export const updateOrder = async (id, payload) => {
+  const token = (await Auth.currentSession()).getIdToken().getJwtToken();
+
+  await axios.patch(`/order/${id}`, payload, {
+    headers: {
+      Authorization: `${token}`,
+    },
+  });
 };

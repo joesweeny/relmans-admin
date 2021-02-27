@@ -4,6 +4,7 @@ import { string } from 'prop-types';
 
 import OrderAddress from './OrderAddress/OrderAddress';
 import OrderDetailsItem from './OrderDetailsItem/OrderDetailsItem';
+import OrderStatusButton from '../../OrderStatusButton/OrderStatusButton';
 import { OrderContext } from '../../../../../../context/OrderContext';
 
 const OrderDetailsWrapper = styled.div`
@@ -24,21 +25,26 @@ const OrderDetailsWrapper = styled.div`
 
 const OrderDetails = (props) => {
   const { id } = props;
-  const { orders } = useContext(OrderContext);
+  const { orders, dispatchOrderStatus } = useContext(OrderContext);
 
   const order = orders.find((o) => o.id === id);
   const { type } = order.method;
   const { address, email } = order.customer;
+  const orderDate = new Date(order.createdAt);
 
   return (
     <OrderDetailsWrapper>
+      {order.status === 'PENDING' ? (
+        <OrderStatusButton click={() => dispatchOrderStatus(id, 'ACCEPTED')} />
+      ) : null}
       <OrderDetailsItem title="Order Number" value={order.id} />
       <OrderDetailsItem
         title="PayPal Transaction ID"
         value={order.transactionId}
       />
-      {type === 'DELIVERY' ? <OrderAddress address={address} /> : null}
+      <OrderDetailsItem title="Order Date" value={orderDate.toLocaleString()} />
       <OrderDetailsItem title="Email" value={email} />
+      {type === 'DELIVERY' ? <OrderAddress address={address} /> : null}
     </OrderDetailsWrapper>
   );
 };

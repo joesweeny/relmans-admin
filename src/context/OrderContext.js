@@ -7,9 +7,9 @@ import React, {
 } from 'react';
 import { node } from 'prop-types';
 
-import { getOrders } from '../gateway/client';
+import { getOrders, updateOrder } from '../gateway/client';
 import reducer from '../store/reducers/order';
-import { setOrders } from '../store/actions/order';
+import { setOrders, updateOrderStatus } from '../store/actions/order';
 
 export const OrderContext = createContext(null);
 
@@ -33,12 +33,25 @@ const OrderContextProvider = (props) => {
       });
   }, []);
 
+  const dispatchOrderStatus = (orderId, status) => {
+    const payload = { status };
+
+    updateOrder(orderId, payload)
+      .then(() => {
+        dispatch(updateOrderStatus(orderId, status));
+      })
+      .catch((e) => {
+        setError(`Price error: ${e.response.data.errors[0].message}`);
+      });
+  };
+
   const store = useMemo(
     () => ({
       orders: state.orders,
       loading,
       error,
       clearError: () => setError(null),
+      dispatchOrderStatus,
     }),
     [error, loading, state.orders]
   );
