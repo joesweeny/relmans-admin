@@ -8,6 +8,7 @@ const OrderAddressWrapper = styled.div`
   flex-direction: column;
   justify-content: flex-start;
   width: 48%;
+  line-height: 16px;
 
   p {
     font-size: 12px;
@@ -26,6 +27,7 @@ const Title = styled.div`
 
   @media (min-width: 959px) {
     font-size: 12px;
+    padding: 5px 0 15px 0;
   }
 `;
 
