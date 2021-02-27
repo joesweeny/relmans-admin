@@ -17,7 +17,7 @@ const OrderContextProvider = (props) => {
   const { children } = props;
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [orders, dispatch] = useReducer(reducer, []);
+  const [state, dispatch] = useReducer(reducer, { orders: [] });
 
   useEffect(() => {
     setLoading(true);
@@ -35,11 +35,12 @@ const OrderContextProvider = (props) => {
 
   const store = useMemo(
     () => ({
-      orders,
+      orders: state.orders,
       loading,
       error,
+      clearError: () => setError(null),
     }),
-    []
+    [error, loading, state.orders]
   );
 
   return (
