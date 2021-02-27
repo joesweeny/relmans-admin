@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { string } from 'prop-types';
 
 import OrderDetails from './OrderDetails/OrderDetails';
+import OrderItemList from './OrderDetails/OrderItemList/OrderItemList';
 
 const OrderInformationWrapper = styled.div`
   display: -webkit-box;
@@ -10,10 +11,9 @@ const OrderInformationWrapper = styled.div`
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: flex-start;
-  margin-top: 10px;
-  padding: 10px 0 10px 0;
-  border-top: 2px solid #cecbcbee;
   width: 100%;
+  border-top: 2px solid #cecbcbee;
+  margin-top: 10px;
 `;
 
 const OrderInformation = (props) => {
@@ -21,7 +21,7 @@ const OrderInformation = (props) => {
 
   return (
     <OrderInformationWrapper>
-      <div>Order Items will go here</div>
+      <OrderItemList id={id} />
       <OrderDetails id={id} />
     </OrderInformationWrapper>
   );

@@ -22,7 +22,7 @@ const OrderListWrapper = styled.div`
   padding-bottom: 30px;
   width: 100%;
 
-  @media (min-width: 959px) {
+  @media (min-width: 1025px) {
     align-items: center;
   }
 `;
