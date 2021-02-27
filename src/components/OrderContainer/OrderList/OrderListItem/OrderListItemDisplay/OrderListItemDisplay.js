@@ -12,7 +12,7 @@ const OrderListItemDisplayWrapper = styled.div`
   padding: 0;
   line-height: 18px;
 
-  @media (min-width: 758px) {
+  @media (min-width: 959px) {
     line-height: 24px;
     font-size: 18px;
     padding: 5px 0 5px 0;
@@ -23,7 +23,7 @@ const Title = styled.p`
   color: #f1943c;
   font-size: 10px;
 
-  @media (min-width: 758px) {
+  @media (min-width: 959px) {
     font-size: 14px;
   }
 `;
