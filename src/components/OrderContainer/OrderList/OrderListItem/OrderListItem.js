@@ -25,11 +25,7 @@ const OrderListItemWrapper = styled.div`
   margin: 5px 10px 5px 0;
   cursor: pointer;
 
-  @media (min-width: 758px) {
-    flex-direction: row;
-  }
-
-  @media (min-width: 959px) {
+  @media (min-width: 1025px) {
     width: 50%;
     margin: 10px;
     padding: 10px 20px 10px 20px;

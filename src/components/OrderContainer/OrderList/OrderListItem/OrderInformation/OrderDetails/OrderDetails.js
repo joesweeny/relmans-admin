@@ -13,9 +13,11 @@ const OrderDetailsWrapper = styled.div`
   flex-wrap: wrap;
   justify-content: flex-start;
   width: 100%;
+  padding: 10px 0 10px 0;
 
   @media (min-width: 959px) {
     width: 48%;
+    padding: 10px 10px 10px 30px;
   }
 `;
 
