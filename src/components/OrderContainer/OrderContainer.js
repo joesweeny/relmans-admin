@@ -13,6 +13,12 @@ const OrderContainerWrapper = styled.div`
   align-content: center;
   margin: 10px;
   padding-bottom: 30px;
+
+  @media (min-width: 768px) {
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+  }
 `;
 
 const OrderContainer = () => {
