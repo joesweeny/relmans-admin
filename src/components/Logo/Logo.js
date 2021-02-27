@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import brand from '../../assets/logo.png';
+import brand from '../../assets/relmanslogo.png';
 
 const LogoWrapper = styled.img`
   max-width: 200px;
