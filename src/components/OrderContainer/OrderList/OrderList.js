@@ -1,24 +1,35 @@
 import React, { useContext } from 'react';
+import styled from 'styled-components';
 
-import Aux from '../../../hoc/Aux/Aux';
 import Loader from '../../Loader/Loader';
 import Modal from '../../Modal/Modal';
+import OrderListItem from './OrderListItem/OrderListItem';
 import { OrderContext } from '../../../context/OrderContext';
+
+const OrderListWrapper = styled.div`
+  width: 100%;
+
+  table {
+    width: 100%;
+    text-align: left;
+    font-size: 12px;
+  }
+`;
 
 const OrderList = () => {
   const { orders, loading, error, clearError } = useContext(OrderContext);
 
   return (
-    <Aux>
+    <OrderListWrapper>
       <Modal clicked={clearError} show={!!error}>
         {error}
       </Modal>
       <Loader loading={loading}>
-        {orders.map((o) => {
-          return <p>{o.customer.firstName}</p>;
-        })}
+        {orders.map((o) => (
+          <OrderListItem order={o} />
+        ))}
       </Loader>
-    </Aux>
+    </OrderListWrapper>
   );
 };
 
