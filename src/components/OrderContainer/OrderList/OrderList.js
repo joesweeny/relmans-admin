@@ -8,12 +8,6 @@ import { OrderContext } from '../../../context/OrderContext';
 
 const OrderListWrapper = styled.div`
   width: 100%;
-
-  table {
-    width: 100%;
-    text-align: left;
-    font-size: 12px;
-  }
 `;
 
 const OrderList = () => {
