@@ -11,6 +11,7 @@ const OrderListItemDisplayWrapper = styled.div`
   width: 30%;
   padding: 0;
   line-height: 18px;
+  color: ${(props) => props.color};
 
   @media (min-width: 959px) {
     line-height: 24px;
@@ -29,10 +30,10 @@ const Title = styled.p`
 `;
 
 const OrderListItemDisplay = (props) => {
-  const { title, value } = props;
+  const { color, title, value } = props;
 
   return (
-    <OrderListItemDisplayWrapper>
+    <OrderListItemDisplayWrapper color={color}>
       <Title>{title}</Title>
       <p>{value}</p>
     </OrderListItemDisplayWrapper>
@@ -40,8 +41,13 @@ const OrderListItemDisplay = (props) => {
 };
 
 OrderListItemDisplay.propTypes = {
+  color: string,
   title: string.isRequired,
   value: string.isRequired,
+};
+
+OrderListItemDisplay.defaultProps = {
+  color: null,
 };
 
 export default OrderListItemDisplay;

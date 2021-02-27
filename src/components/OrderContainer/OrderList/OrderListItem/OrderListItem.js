@@ -53,7 +53,11 @@ const OrderListItem = (props) => {
       />
       <OrderListItemDisplay title="Phone" value={order.customer.phone} />
       <OrderListItemDisplay title="Type" value={type} />
-      <OrderListItemDisplay title="Status" value={order.status} />
+      <OrderListItemDisplay
+        title="Status"
+        value={order.status}
+        color={order.status === 'ACCEPTED' ? 'green' : 'black'}
+      />
       <OrderListItemDisplay
         title="Total"
         value={`£${(total / 100).toFixed(2)}`}

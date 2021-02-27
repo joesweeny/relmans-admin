@@ -17,6 +17,7 @@ const OrderAddressWrapper = styled.div`
   @media (min-width: 959px) {
     p {
       font-size: 14px;
+      padding: 2px;
     }
   }
 `;

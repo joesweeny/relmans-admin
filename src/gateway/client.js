@@ -37,6 +37,9 @@ export const getOrders = async () => {
     headers: {
       Authorization: `${token}`,
     },
+    params: {
+      orderBy: 'created_at_desc',
+    },
   });
 
   return response.data.data.orders;
