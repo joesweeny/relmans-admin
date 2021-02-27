@@ -57,7 +57,7 @@ const OrderListItem = (props) => {
         title="Fulfilment Date"
         value={fulfilmentDate.toLocaleDateString()}
       />
-      {open ? <OrderInformation /> : null}
+      {open ? <OrderInformation id={id} /> : null}
     </OrderListItemWrapper>
   );
 };
