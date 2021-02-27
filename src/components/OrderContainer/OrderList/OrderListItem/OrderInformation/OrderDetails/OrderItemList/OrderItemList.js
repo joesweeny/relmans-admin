@@ -14,7 +14,7 @@ const OrderItemListWrapper = styled.div`
   padding: 10px 0 10px 0;
   border-bottom: 2px solid #cecbcbee;
 
-  @media (min-width: 959px) {
+  @media (min-width: 1024px) {
     width: 48%;
     border-bottom: none;
   }

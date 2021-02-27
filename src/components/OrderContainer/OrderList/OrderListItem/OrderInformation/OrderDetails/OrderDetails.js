@@ -15,7 +15,7 @@ const OrderDetailsWrapper = styled.div`
   width: 100%;
   padding: 10px 0 10px 0;
 
-  @media (min-width: 959px) {
+  @media (min-width: 1024px) {
     width: 48%;
     padding: 10px 10px 10px 30px;
   }
