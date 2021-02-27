@@ -16,7 +16,7 @@ const OrderDetailsItemWrapper = styled.div`
   }
 
   span {
-    font-size: 12px;
+    font-size: 10px;
     word-wrap: break-word;
   }
 
@@ -24,7 +24,7 @@ const OrderDetailsItemWrapper = styled.div`
     line-height: 24px;
 
     p {
-      font-size: 12px;
+      font-size: 14px;
     }
 
     span {
