@@ -10,6 +10,7 @@ const OrderListItemDisplayWrapper = styled.div`
   font-size: 10px;
   width: 30%;
   padding: 0;
+  line-height: 16px;
 
   @media (min-width: 758px) {
     font-size: 18px;
