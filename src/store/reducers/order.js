@@ -28,7 +28,7 @@ const reducer = (state, action) => {
     case actionTypes.SET_ORDERS:
       return setOrders(state, action);
     case actionTypes.UPDATE_ORDER_STATUS:
-      return updateOrderStatus(state, action):
+      return updateOrderStatus(state, action);
     default:
       return state;
   }
