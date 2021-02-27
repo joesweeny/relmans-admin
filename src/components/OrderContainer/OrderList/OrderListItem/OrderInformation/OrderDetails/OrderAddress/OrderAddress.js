@@ -23,6 +23,10 @@ const OrderAddressWrapper = styled.div`
 const Title = styled.div`
   font-size: 10px;
   color: #f1943c;
+
+  @media (min-width: 959px) {
+    font-size: 12px;
+  }
 `;
 
 const OrderAddress = (props) => {
