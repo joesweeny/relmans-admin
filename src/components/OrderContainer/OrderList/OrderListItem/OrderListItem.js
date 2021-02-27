@@ -1,7 +1,8 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import styled from 'styled-components';
 import { string } from 'prop-types';
 
+import OrderInformation from './OrderInformation/OrderInformation';
 import OrderListItemDisplay from './OrderListItemDisplay/OrderListItemDisplay';
 import { OrderContext } from '../../../../context/OrderContext';
 
@@ -38,13 +39,14 @@ const OrderListItemWrapper = styled.div`
 const OrderListItem = (props) => {
   const { id } = props;
   const { orders } = useContext(OrderContext);
+  const [open, setOpen] = useState(false);
 
   const order = orders.find((o) => o.id === id);
   const { date, type } = order.method;
   const fulfilmentDate = new Date(date);
 
   return (
-    <OrderListItemWrapper>
+    <OrderListItemWrapper onClick={() => setOpen(!open)}>
       <OrderListItemDisplay
         title="Customer"
         value={`${order.customer.firstName} ${order.customer.lastName}`}
@@ -55,6 +57,7 @@ const OrderListItem = (props) => {
         title="Fulfilment Date"
         value={fulfilmentDate.toLocaleDateString()}
       />
+      {open ? <OrderInformation id={id} /> : null}
     </OrderListItemWrapper>
   );
 };
