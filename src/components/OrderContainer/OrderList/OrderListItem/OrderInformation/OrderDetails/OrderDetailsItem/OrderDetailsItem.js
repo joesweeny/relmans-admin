@@ -8,6 +8,7 @@ const OrderDetailsItemWrapper = styled.div`
   flex-direction: column;
   justify-content: flex-start;
   width: 48%;
+  line-height: 16px;
 
   p {
     font-size: 10px;
@@ -20,12 +21,15 @@ const OrderDetailsItemWrapper = styled.div`
   }
 
   @media (min-width: 959px) {
+    line-height: 24px;
+
     p {
       font-size: 12px;
     }
 
     span {
       font-size: 14px;
+      padding: 5px 0 5px 0;
     }
   }
 `;
