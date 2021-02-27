@@ -41,3 +41,13 @@ export const getOrders = async () => {
 
   return response.data.data.orders;
 };
+
+export const updateOrder = async (id, payload) => {
+  const token = (await Auth.currentSession()).getIdToken().getJwtToken();
+
+  await axios.patch(`/order/${id}`, payload, {
+    headers: {
+      Authorization: `${token}`,
+    },
+  });
+};
