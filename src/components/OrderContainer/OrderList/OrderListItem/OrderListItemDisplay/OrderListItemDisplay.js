@@ -25,10 +25,10 @@ const Title = styled.p`
 `;
 
 const OrderListItemDisplay = (props) => {
-  const { align, title, value } = props;
+  const { title, value } = props;
 
   return (
-    <OrderListItemDisplayWrapper align={align}>
+    <OrderListItemDisplayWrapper>
       <Title>{title}</Title>
       <p>{value}</p>
     </OrderListItemDisplayWrapper>
@@ -36,13 +36,8 @@ const OrderListItemDisplay = (props) => {
 };
 
 OrderListItemDisplay.propTypes = {
-  align: string,
   title: string.isRequired,
   value: string.isRequired,
-};
-
-OrderListItemDisplay.defaultProps = {
-  align: null,
 };
 
 export default OrderListItemDisplay;

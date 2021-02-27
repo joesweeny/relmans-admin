@@ -48,14 +48,12 @@ const OrderListItem = (props) => {
       <OrderListItemDisplay
         title="Customer"
         value={`${order.customer.firstName} ${order.customer.lastName}`}
-        width="30%"
       />
       <OrderListItemDisplay title="Status" value={order.status} />
-      <OrderListItemDisplay title="Fulfilment Type" value={type} width="30%" />
+      <OrderListItemDisplay title="Fulfilment Type" value={type} />
       <OrderListItemDisplay
         title="Fulfilment Date"
         value={fulfilmentDate.toLocaleDateString()}
-        width="30%"
       />
     </OrderListItemWrapper>
   );
