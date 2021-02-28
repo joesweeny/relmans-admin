@@ -29,7 +29,7 @@ const OrderDetails = (props) => {
 
   const order = orders.find((o) => o.id === id);
   const { type } = order.method;
-  const { address, email } = order.customer;
+  const { address, email, phone } = order.customer;
   const orderDate = new Date(order.createdAt);
 
   return (
@@ -42,8 +42,9 @@ const OrderDetails = (props) => {
         title="PayPal Transaction ID"
         value={order.transactionId}
       />
-      <OrderDetailsItem title="Order Date" value={orderDate.toLocaleString()} />
+      <OrderDetailsItem title="Phone" value={phone} />
       <OrderDetailsItem title="Email" value={email} />
+      <OrderDetailsItem title="Order Date" value={orderDate.toLocaleString()} />
       {type === 'DELIVERY' ? <OrderAddress address={address} /> : null}
     </OrderDetailsWrapper>
   );

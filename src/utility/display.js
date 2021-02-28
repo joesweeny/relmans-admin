@@ -11,7 +11,7 @@ const displayMeasurement = (measurement, size) => {
     return `${size}L`;
   }
 
-  return measurement.charAt(0).toUpperCase() + measurement.slice(1);
+  return measurement;
 };
 
 export default displayMeasurement;

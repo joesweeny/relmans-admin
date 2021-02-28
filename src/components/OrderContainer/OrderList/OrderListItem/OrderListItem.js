@@ -53,16 +53,16 @@ const OrderListItem = (props) => {
       />
       <OrderListItemDisplay title="Type" value={type} />
       <OrderListItemDisplay
+        title="Total"
+        value={`£${(total / 100).toFixed(2)}`}
+      />
+      <OrderListItemDisplay
         title="Status"
         value={order.status}
         color={order.status === 'ACCEPTED' ? 'green' : 'black'}
       />
       <OrderListItemDisplay
-        title="Total"
-        value={`£${(total / 100).toFixed(2)}`}
-      />
-      <OrderListItemDisplay
-        title="Date"
+        title="Fulfilment Date"
         value={fulfilmentDate.toLocaleDateString()}
       />
       <OrderToggle id={id} open={open} toggle={setOpen} />
