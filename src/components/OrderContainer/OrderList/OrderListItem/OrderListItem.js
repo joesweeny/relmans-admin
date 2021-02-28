@@ -4,6 +4,7 @@ import { string } from 'prop-types';
 
 import OrderInformation from './OrderInformation/OrderInformation';
 import OrderListItemDisplay from './OrderListItemDisplay/OrderListItemDisplay';
+import OrderToggle from './OrderToggle/OrderToggle';
 import { OrderContext } from '../../../../context/OrderContext';
 
 const OrderListItemWrapper = styled.div`
@@ -23,7 +24,6 @@ const OrderListItemWrapper = styled.div`
   width: 100%;
   padding: 5px 10px 5px 10px;
   margin: 5px 10px 5px 0;
-  cursor: pointer;
 
   @media (min-width: 1025px) {
     width: 50%;
@@ -46,12 +46,11 @@ const OrderListItem = (props) => {
   const fulfilmentDate = new Date(date);
 
   return (
-    <OrderListItemWrapper onClick={() => setOpen(!open)}>
+    <OrderListItemWrapper>
       <OrderListItemDisplay
         title="Customer"
         value={`${order.customer.firstName} ${order.customer.lastName}`}
       />
-      <OrderListItemDisplay title="Phone" value={order.customer.phone} />
       <OrderListItemDisplay title="Type" value={type} />
       <OrderListItemDisplay
         title="Status"
@@ -66,6 +65,7 @@ const OrderListItem = (props) => {
         title="Date"
         value={fulfilmentDate.toLocaleDateString()}
       />
+      <OrderToggle id={id} open={open} toggle={setOpen} />
       {open ? <OrderInformation id={id} /> : null}
     </OrderListItemWrapper>
   );
