@@ -44,8 +44,7 @@ const productPrice = (props) => {
 
   return (
     <ProductPriceWrapper>
-      <p>{price.size}</p>
-      <p>{displayMeasurement(price.measurement)}</p>
+      <p>{displayMeasurement(price.measurement, price.size)}</p>
       {isEditing ? (
         <ProductPriceEdit price={price} updatePrice={updatePrice} />
       ) : (
