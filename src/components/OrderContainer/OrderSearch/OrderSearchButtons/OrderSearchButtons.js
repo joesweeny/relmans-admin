@@ -36,14 +36,9 @@ const OrderSearchButtons = (props) => {
     <OrderSearchButtonsWrapper>
       <FontAwesomeIcon
         icon={faSearch}
-        size="2x"
         onClick={() => dispatchOrderFetch(from, to)}
       />
-      <FontAwesomeIcon
-        icon={faCalculator}
-        size="2x"
-        onClick={() => alert('Hello')}
-      />
+      <FontAwesomeIcon icon={faCalculator} onClick={() => alert('Hello')} />
     </OrderSearchButtonsWrapper>
   );
 };
