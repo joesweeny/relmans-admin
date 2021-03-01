@@ -19,10 +19,10 @@ const OrderContextProvider = (props) => {
   const [error, setError] = useState(null);
   const [state, dispatch] = useReducer(reducer, { orders: [] });
 
-  useEffect(() => {
+  const dispatchOrderFetch = (deliveryFrom, deliveryTo) => {
     setLoading(true);
 
-    getOrders()
+    getOrders(deliveryFrom, deliveryTo)
       .then((o) => {
         dispatch(setOrders(o));
         setLoading(false);
@@ -31,7 +31,7 @@ const OrderContextProvider = (props) => {
         setError(e.response.data.errors[0].message);
         setLoading(false);
       });
-  }, []);
+  };
 
   const dispatchOrderStatus = (orderId, status) => {
     const payload = { status };
@@ -45,12 +45,17 @@ const OrderContextProvider = (props) => {
       });
   };
 
+  useEffect(() => {
+    dispatchOrderFetch();
+  }, []);
+
   const store = useMemo(
     () => ({
       orders: state.orders,
       loading,
       error,
       clearError: () => setError(null),
+      dispatchOrderFetch,
       dispatchOrderStatus,
     }),
     [error, loading, state.orders]

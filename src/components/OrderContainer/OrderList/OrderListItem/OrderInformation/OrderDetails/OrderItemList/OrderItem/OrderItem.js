@@ -44,11 +44,12 @@ const OrderItem = (props) => {
   return (
     <OrderItemWrapper>
       <Image
-        src={`${process.env.PUBLIC_URL}/products/fruitandveg.jpg`}
+        src={`https://relmans.s3.eu-west-2.amazonaws.com/products/${item.productId}.jpg`}
         alt={item.name}
       />
       <p>
-        {item.name} ({item.size} {displayMeasurement(item.measurement)})
+        {item.name} ({item.size}{' '}
+        {displayMeasurement(item.measurement, item.size)})
       </p>
       <p>
         {item.quantity} @ £{(item.price / 100).toFixed(2)}
@@ -59,6 +60,7 @@ const OrderItem = (props) => {
 
 OrderItem.propTypes = {
   item: shape({
+    productId: string,
     name: string,
     price: number,
     size: number,
