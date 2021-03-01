@@ -13,7 +13,8 @@ const OrderSearchButtonsWrapper = styled.div`
   justify-content: center;
   align-items: center;
   width: 20%;
-  font-size: 12px;
+  font-size: 18px;
+  padding: 10px;
 
   svg {
     margin: 5px 0 5px 0;
@@ -21,6 +22,7 @@ const OrderSearchButtonsWrapper = styled.div`
 
   @media (min-width: 1025px) {
     flex-direction: row;
+    font-size: 24px;
 
     svg {
       margin: 0 10px 0 10px;

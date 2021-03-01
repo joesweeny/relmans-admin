@@ -9,14 +9,14 @@ const OrderDateSearchWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  width: 80%;
+  width: 100%;
   align-items: center;
   background-color: #ffffff;
   margin: 5px;
 
   @media (min-width: 1025px) {
     flex-direction: row;
-    width: 80%;
+    width: 100%;
   }
 `;
 

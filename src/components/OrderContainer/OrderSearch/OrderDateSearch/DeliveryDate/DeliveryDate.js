@@ -24,6 +24,7 @@ const DeliveryDateWrapper = styled.div`
     border: 0;
     border-bottom: 2px solid #3d604c;
     outline: 0;
+    padding: 5px;
     background: transparent;
     text-align: center;
     cursor: pointer;
