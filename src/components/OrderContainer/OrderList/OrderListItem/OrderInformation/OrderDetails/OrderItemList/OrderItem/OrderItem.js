@@ -48,8 +48,7 @@ const OrderItem = (props) => {
         alt={item.name}
       />
       <p>
-        {item.name} ({item.size}{' '}
-        {displayMeasurement(item.measurement, item.size)})
+        {item.name} ({displayMeasurement(item.measurement, item.size)})
       </p>
       <p>
         {item.quantity} @ £{(item.price / 100).toFixed(2)}
