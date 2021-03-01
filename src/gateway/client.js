@@ -30,7 +30,7 @@ export const updatePrice = async (id, price) => {
   );
 };
 
-export const getOrders = async () => {
+export const getOrders = async (deliveryFrom, deliveryTo) => {
   const token = (await Auth.currentSession()).getIdToken().getJwtToken();
 
   const response = await axios.get('/order', {
@@ -39,6 +39,8 @@ export const getOrders = async () => {
     },
     params: {
       orderBy: 'created_at_desc',
+      deliveryFrom,
+      deliveryTo,
     },
   });
 
