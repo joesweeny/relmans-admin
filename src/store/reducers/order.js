@@ -1,5 +1,5 @@
 import * as actionTypes from '../actions/actionTypes';
-import addSortOrder from '../../utility/order';
+import { addSortOrder } from '../../utility/order';
 
 const setOrders = (state, action) => {
   return {
