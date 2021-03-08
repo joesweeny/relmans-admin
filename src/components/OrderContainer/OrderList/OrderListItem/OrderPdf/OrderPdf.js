@@ -105,19 +105,19 @@ const OrderPdf = (props) => {
           </View>
         </View>
         <View style={styles.tableHeader}>
+          <Text style={{ width: '15%' }}>Quantity</Text>
           <Text style={{ width: '55%' }}>Product</Text>
           <Text style={{ width: '15%' }}>Measurement</Text>
-          <Text style={{ width: '15%' }}>Quantity</Text>
           <Text style={{ width: '15%' }}>Price</Text>
         </View>
         {order.items.map((i) => {
           return (
             <View key={i.name} style={styles.tableRow}>
+              <Text style={{ width: '15%' }}>{i.quantity}</Text>
               <Text style={{ width: '55%' }}>{i.name}</Text>
               <Text style={{ width: '15%' }}>
                 {displayMeasurement(i.measurement, i.size)}
               </Text>
-              <Text style={{ width: '15%' }}>{i.quantity}</Text>
               <Text style={{ width: '15%' }}>
                 £{(i.price / 100).toFixed(2)}
               </Text>
