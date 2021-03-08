@@ -34,7 +34,7 @@ const OrderDetails = (props) => {
 
   return (
     <OrderDetailsWrapper>
-      {order.status === 'PENDING' ? (
+      {order.status === 'PAYMENT_RECEIVED' ? (
         <OrderStatusButton click={() => dispatchOrderStatus(id, 'ACCEPTED')} />
       ) : null}
       <OrderDetailsItem title="Order Number" value={order.id} />
