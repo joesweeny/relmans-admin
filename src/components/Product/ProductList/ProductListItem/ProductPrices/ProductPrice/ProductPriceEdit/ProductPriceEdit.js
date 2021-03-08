@@ -50,7 +50,7 @@ const ProductPriceEdit = (props) => {
 
     const newPrice = {
       ...price,
-      value: parseFloat(v) * 100,
+      value: Math.round(parseFloat(v) * 100),
     };
 
     updatePrice((prev) => {

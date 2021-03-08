@@ -2,8 +2,6 @@ import React from 'react';
 import { arrayOf, number, shape, string } from 'prop-types';
 import { Page, Text, View, Document, StyleSheet } from '@react-pdf/renderer';
 
-import { aggregateOrders } from '../../../utility/order';
-
 const styles = StyleSheet.create({
   page: {
     display: 'flex',
@@ -24,7 +22,7 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
   },
   tableHeader: {
-    width: '100%',
+    width: '70%',
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -35,7 +33,7 @@ const styles = StyleSheet.create({
     paddingBottom: 5,
   },
   tableRow: {
-    width: '100%',
+    width: '70%',
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -52,14 +50,14 @@ const OrderAggregatePdf = (props) => {
         <View style={styles.section}>
           <View style={styles.innerSection}>
             <View style={styles.tableHeader}>
-              <Text style={{ width: '55%' }}>Product</Text>
-              <Text style={{ width: '15%' }}>Quantity</Text>
+              <Text style={{ width: '30%' }}>Quantity</Text>
+              <Text style={{ width: '70%' }}>Product</Text>
             </View>
             {items.map((i) => {
               return (
                 <View key={i.name} style={styles.tableRow}>
-                  <Text style={{ width: '55%' }}>{i.name}</Text>
-                  <Text style={{ width: '15%' }}>{i.quantity}</Text>
+                  <Text style={{ width: '30%' }}>{i.quantity}</Text>
+                  <Text style={{ width: '70%' }}>{i.name}</Text>
                 </View>
               );
             })}
