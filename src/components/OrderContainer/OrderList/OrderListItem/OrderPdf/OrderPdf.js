@@ -97,7 +97,7 @@ const OrderPdf = (props) => {
               Fulfilment Date:{' '}
               {type === 'DELIVERY'
                 ? fulfilmentDate.toLocaleDateString()
-                : fulfilmentDate.toLocaleString()}
+                : `${fulfilmentDate.toLocaleDateString()} - ${fulfilmentDate.toLocaleTimeString()}`}
             </Text>
             <Text style={styles.innerSectionText}>
               Order Date: {orderDate.toLocaleString()}

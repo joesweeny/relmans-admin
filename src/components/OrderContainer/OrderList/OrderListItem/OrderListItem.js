@@ -67,7 +67,11 @@ const OrderListItem = (props) => {
       />
       <OrderListItemDisplay
         title="Fulfilment Date"
-        value={fulfilmentDate.toLocaleDateString()}
+        value={
+          type === 'DELIVERY'
+            ? fulfilmentDate.toLocaleDateString()
+            : `${fulfilmentDate.toLocaleDateString()} - ${fulfilmentDate.toLocaleTimeString()}`
+        }
       />
       <OrderToggle id={id} open={open} toggle={setOpen} />
       {open ? <OrderInformation id={id} /> : null}
