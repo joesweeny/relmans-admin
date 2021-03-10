@@ -7,27 +7,39 @@ import displayMeasurement from '../../../../../utility/display';
 const styles = StyleSheet.create({
   page: {
     display: 'flex',
-    flexDirection: 'column',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    margin: 0,
     width: '100%',
-    padding: 20,
-    fontSize: 12,
+    paddingLeft: 10,
+    paddingRight: 10,
+    fontSize: 10,
+  },
+  column: {
+    width: '50%',
   },
   section: {
     width: '100%',
     display: 'flex',
     flexDirection: 'row',
-    marginBottom: 10,
   },
   innerSection: {
     width: '50%',
     display: 'flex',
     flexDirection: 'column',
+    paddingTop: 5,
+    paddingBottom: 0,
+  },
+  innerFullSection: {
+    width: '100%',
+    display: 'flex',
+    flexDirection: 'row',
+    marginTop: 0,
+    paddingTop: 0,
+    paddingBottom: 5,
   },
   innerSectionText: {
-    paddingTop: 10,
-    paddingBottom: 10,
-  },
-  addressText: {
+    paddingTop: 5,
     paddingBottom: 5,
   },
   tableHeader: {
@@ -63,67 +75,121 @@ const OrderPdf = (props) => {
 
   return (
     <Document>
-      <Page size="A4" wrap style={styles.page}>
-        <View style={styles.section}>
-          <View style={styles.innerSection}>
-            <Text style={styles.innerSectionText}>
-              Customer: {firstName} {lastName}
-            </Text>
-            <Text style={styles.innerSectionText}>Telephone: {phone}</Text>
-            <Text style={styles.innerSectionText}>Email: {email}</Text>
-            {type === 'DELIVERY' ? (
-              <View>
-                <Text style={styles.innerSectionText}>Address:</Text>
-                <Text style={styles.addressText}>{address.line1}</Text>
-                {address.line2 ? (
-                  <Text style={styles.addressText}>{address.line2}</Text>
-                ) : null}
-                {address.line3 ? (
-                  <Text style={styles.addressText}>{address.line3}</Text>
-                ) : null}
-                {address.town ? (
-                  <Text style={styles.addressText}>{address.town}</Text>
-                ) : null}
-                {address.county ? (
-                  <Text style={styles.addressText}>{address.county}</Text>
-                ) : null}
-                <Text style={styles.addressText}>{address.postCode}</Text>
-              </View>
-            ) : null}
-          </View>
-          <View style={styles.innerSection}>
-            <Text style={styles.innerSectionText}>Fulfilment Type: {type}</Text>
-            <Text style={styles.innerSectionText}>
-              Fulfilment Date:{' '}
-              {type === 'DELIVERY'
-                ? fulfilmentDate.toLocaleDateString()
-                : fulfilmentDate.toLocaleString()}
-            </Text>
-            <Text style={styles.innerSectionText}>
-              Order Date: {orderDate.toLocaleString()}
-            </Text>
-          </View>
-        </View>
-        <View style={styles.tableHeader}>
-          <Text style={{ width: '15%' }}>Quantity</Text>
-          <Text style={{ width: '55%' }}>Product</Text>
-          <Text style={{ width: '15%' }}>Measurement</Text>
-          <Text style={{ width: '15%' }}>Price</Text>
-        </View>
-        {order.items.map((i) => {
-          return (
-            <View key={i.name} style={styles.tableRow}>
-              <Text style={{ width: '15%' }}>{i.quantity}</Text>
-              <Text style={{ width: '55%' }}>{i.name}</Text>
-              <Text style={{ width: '15%' }}>
-                {displayMeasurement(i.measurement, i.size)}
+      <Page size="A4" wrap style={styles.page} orientation="landscape">
+        <View style={styles.column}>
+          <View style={styles.section}>
+            <View style={styles.innerSection}>
+              <Text style={styles.innerSectionText}>
+                Customer: {firstName} {lastName}
               </Text>
-              <Text style={{ width: '15%' }}>
-                £{(i.price / 100).toFixed(2)}
+              <Text style={styles.innerSectionText}>Telephone: {phone}</Text>
+              <Text style={styles.innerSectionText}>Email: {email}</Text>
+            </View>
+            <View style={styles.innerSection}>
+              <Text style={styles.innerSectionText}>
+                Fulfilment Type: {type}
+              </Text>
+              <Text style={styles.innerSectionText}>
+                Fulfilment Date:{' '}
+                {type === 'DELIVERY'
+                  ? fulfilmentDate.toLocaleDateString()
+                  : `${fulfilmentDate.toLocaleDateString()} - ${fulfilmentDate.toLocaleTimeString()}`}
+              </Text>
+              <Text style={styles.innerSectionText}>
+                Order Date: {orderDate.toLocaleString()}
               </Text>
             </View>
-          );
-        })}
+          </View>
+          <View style={styles.innerFullSection}>
+            {type === 'DELIVERY' ? (
+              <Text style={styles.innerSectionText}>
+                Address: {address.line1}
+                <Text>{address.line2 ? `, ${address.line2}` : null}</Text>
+                <Text>{address.line3 ? `, ${address.line3}` : null}</Text>
+                <Text>{address.town ? `, ${address.town}` : null}</Text>
+                <Text>{address.county ? `, ${address.county}` : null}</Text>
+                <Text> {address.postCode}</Text>
+              </Text>
+            ) : null}
+          </View>
+          <View style={styles.tableHeader}>
+            <Text style={{ width: '15%' }}>Quantity</Text>
+            <Text style={{ width: '55%' }}>Product</Text>
+            <Text style={{ width: '15%' }}>Measurement</Text>
+            <Text style={{ width: '15%' }}>Price</Text>
+          </View>
+          {order.items.map((i) => {
+            return (
+              <View key={i.name} style={styles.tableRow}>
+                <Text style={{ width: '15%' }}>{i.quantity}</Text>
+                <Text style={{ width: '55%' }}>{i.name}</Text>
+                <Text style={{ width: '15%' }}>
+                  {displayMeasurement(i.measurement, i.size)}
+                </Text>
+                <Text style={{ width: '15%' }}>
+                  £{(i.price / 100).toFixed(2)}
+                </Text>
+              </View>
+            );
+          })}
+        </View>
+        <View style={styles.column}>
+          <View style={styles.section}>
+            <View style={styles.innerSection}>
+              <Text style={styles.innerSectionText}>
+                Customer: {firstName} {lastName}
+              </Text>
+              <Text style={styles.innerSectionText}>Telephone: {phone}</Text>
+              <Text style={styles.innerSectionText}>Email: {email}</Text>
+            </View>
+            <View style={styles.innerSection}>
+              <Text style={styles.innerSectionText}>
+                Fulfilment Type: {type}
+              </Text>
+              <Text style={styles.innerSectionText}>
+                Fulfilment Date:{' '}
+                {type === 'DELIVERY'
+                  ? fulfilmentDate.toLocaleDateString()
+                  : `${fulfilmentDate.toLocaleDateString()} - ${fulfilmentDate.toLocaleTimeString()}`}
+              </Text>
+              <Text style={styles.innerSectionText}>
+                Order Date: {orderDate.toLocaleString()}
+              </Text>
+            </View>
+          </View>
+          <View style={styles.innerFullSection}>
+            {type === 'DELIVERY' ? (
+              <Text style={styles.innerSectionText}>
+                Address: {address.line1}
+                <Text>{address.line2 ? `, ${address.line2}` : null}</Text>
+                <Text>{address.line3 ? `, ${address.line3}` : null}</Text>
+                <Text>{address.town ? `, ${address.town}` : null}</Text>
+                <Text>{address.county ? `, ${address.county}` : null}</Text>
+                <Text> {address.postCode}</Text>
+              </Text>
+            ) : null}
+          </View>
+          <View style={styles.tableHeader}>
+            <Text style={{ width: '15%' }}>Quantity</Text>
+            <Text style={{ width: '55%' }}>Product</Text>
+            <Text style={{ width: '15%' }}>Measurement</Text>
+            <Text style={{ width: '15%' }}>Price</Text>
+          </View>
+          {order.items.map((i) => {
+            return (
+              <View key={i.name} style={styles.tableRow}>
+                <Text style={{ width: '15%' }}>{i.quantity}</Text>
+                <Text style={{ width: '55%' }}>{i.name}</Text>
+                <Text style={{ width: '15%' }}>
+                  {displayMeasurement(i.measurement, i.size)}
+                </Text>
+                <Text style={{ width: '15%' }}>
+                  £{(i.price / 100).toFixed(2)}
+                </Text>
+              </View>
+            );
+          })}
+        </View>
       </Page>
     </Document>
   );
