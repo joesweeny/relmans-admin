@@ -14,16 +14,17 @@ const OrderFiltersWrapper = styled.div`
   height: 150px;
   align-items: left;
   background-color: #ffffff;
-  margin: 5px;
+  margin: 0 5px 0 0;
   border-radius: 5px;
   box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.23);
-  padding: 10px 10px 15px 10px;
+  padding: 10px 10px 5px 10px;
 
   @media (min-width: 1025px) {
     flex-direction: row;
     width: 100%;
     height: fit-content;
     margin: 0 5px 0 0;
+    padding: 10px 10px 15px 10px;
   }
 `;
 
