@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
-import OrderDateSearch from './OrderDateSearch/OrderDateSearch';
+import OrderFilters from './OrderFilters/OrderFilters';
 import OrderSearchButtons from './OrderSearchButtons/OrderSearchButtons';
 
 const OrderSearchWrapper = styled.div`
@@ -13,10 +13,6 @@ const OrderSearchWrapper = styled.div`
   flex-shrink: 0;
   width: 100%;
   align-items: center;
-  background-color: #ffffff;
-  border-radius: 5px;
-  box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.23);
-  margin: 10px 0 10px 0;
 
   @media (min-width: 1025px) {
     width: 50%;
@@ -32,16 +28,19 @@ const OrderSearchWrapper = styled.div`
 const OrderSearch = () => {
   const [deliveryFrom, setDeliveryFrom] = useState(null);
   const [deliveryTo, setDeliveryTo] = useState(null);
+  const [status, setStatus] = useState(null);
 
   return (
     <OrderSearchWrapper>
-      <OrderDateSearch
+      <OrderFilters
         setFrom={setDeliveryFrom}
         setTo={setDeliveryTo}
         from={deliveryFrom}
         to={deliveryTo}
+        status={status}
+        setStatus={setStatus}
       />
-      <OrderSearchButtons from={deliveryFrom} to={deliveryTo} />
+      <OrderSearchButtons from={deliveryFrom} to={deliveryTo} status={status} />
     </OrderSearchWrapper>
   );
 };
