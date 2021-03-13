@@ -19,10 +19,10 @@ const OrderContextProvider = (props) => {
   const [error, setError] = useState(null);
   const [state, dispatch] = useReducer(reducer, { orders: [] });
 
-  const dispatchOrderFetch = (deliveryFrom, deliveryTo) => {
+  const dispatchOrderFetch = (deliveryFrom, deliveryTo, status) => {
     setLoading(true);
 
-    getOrders(deliveryFrom, deliveryTo)
+    getOrders(deliveryFrom, deliveryTo, status)
       .then((o) => {
         dispatch(setOrders(o));
         setLoading(false);

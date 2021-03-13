@@ -2,33 +2,28 @@ import React from 'react';
 import styled from 'styled-components';
 import { instanceOf, func, string } from 'prop-types';
 import DatePicker from 'react-datepicker';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
 import 'react-datepicker/dist/react-datepicker.css';
 
 const DeliveryDateWrapper = styled.div`
-  display: -webkit-flex;
-  display: flex;
-  flex-shrink: 0
-  flex-direction: row;
-  justify-content: center;
   align-items: center;
-  width: 80%;
+  width: 100%;
   cursor: pointer;
-  font-size: 16px;
+  font-size: 14px;
+  color: #3d604c;
 
   input {
     font-family: inherit;
-    width: 95%;
     border: 0;
     border-bottom: 2px solid #3d604c;
     outline: 0;
-    padding: 5px;
+    padding: 5px 5px 5px 10px;
     background: transparent;
-    text-align: center;
+    text-align: left;
     cursor: pointer;
-    color: #3d604c;
+    color: #757586;
+    width: 100%;
+    text-transform: uppercase;
   }
 
   .react-datepicker__day--keyboard-selected,
@@ -36,15 +31,22 @@ const DeliveryDateWrapper = styled.div`
   .react-datepicker__day--selected {
     background: green !important;
   }
-  
-  svg {
-    margin: 0 15px 0 0;
+
+  .react-datepicker__close-icon {
+    &:after {
+      background-color: #3d604c;
+    }
   }
-  
+
+  .react-datepicker-wrapper {
+    width: 98%;
+  }
+
   @media (min-width: 1025px) {
     width: 100%;
-    margin: 10px 0 10px 0;
-    font-size: 20px;
+    margin: 10px 5px 10px 5px;
+    font-size: 14px;
+    color: #3d604c;
   }
 `;
 
@@ -55,14 +57,13 @@ const DeliveryDate = (props) => {
 
   return (
     <DeliveryDateWrapper>
-      <FontAwesomeIcon icon={faTimes} size="1x" onClick={() => setDate(null)} />
       <DatePicker
         selected={date}
-        minDate={minDate}
         openToDate={minDate}
         onChange={(d) => setDate(d)}
         placeholderText={placeholder}
         dateFormat="dd/MM/yyyy"
+        isClearable
       />
     </DeliveryDateWrapper>
   );
