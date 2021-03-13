@@ -7,7 +7,7 @@ const OrderStatusSearchWrapper = styled.select`
   margin: 5px 0 10px 0;
   color: #757586;
   font-size: 14px;
-  padding: 5px 0 10px 5px;
+  padding: 5px;
   border: none;
   border-bottom: 2px solid #3d604c;
   background-color: #ffffff;
