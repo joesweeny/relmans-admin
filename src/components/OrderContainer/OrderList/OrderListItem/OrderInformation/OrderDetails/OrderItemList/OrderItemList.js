@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
-import { string } from 'prop-types';
+import { arrayOf, number, shape, string } from 'prop-types';
 
 import OrderItem from './OrderItem/OrderItem';
 import { OrderContext } from '../../../../../../../context/OrderContext';
@@ -21,22 +21,28 @@ const OrderItemListWrapper = styled.div`
 `;
 
 const OrderItemList = (props) => {
-  const { id } = props;
-  const { orders } = useContext(OrderContext);
-
-  const order = orders.find((o) => o.id === id);
+  const { items } = props;
 
   return (
     <OrderItemListWrapper>
-      {order.items.map((i) => (
-        <OrderItem item={i} key={i.id} />
+      {items.map((i) => (
+        <OrderItem item={i} key={i.productId} />
       ))}
     </OrderItemListWrapper>
   );
 };
 
 OrderItemList.propTypes = {
-  id: string.isRequired,
+  items: arrayOf(
+    shape({
+      productId: string,
+      name: string,
+      price: number,
+      size: number,
+      measurement: string,
+      quantity: number,
+    }).isRequired
+  ).isRequired,
 };
 
 export default OrderItemList;
