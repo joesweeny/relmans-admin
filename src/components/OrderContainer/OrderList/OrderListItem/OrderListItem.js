@@ -38,16 +38,8 @@ const OrderListItem = (props) => {
   const [open, setOpen] = useState(false);
 
   const order = orders.find((o) => o.id === id);
-  let total = order.items.reduce(
-    (prev, next) => prev + next.quantity * next.price,
-    0
-  );
   const { date, type } = order.method;
   const fulfilmentDate = new Date(date);
-
-  if (type === 'DELIVERY' && total < 2500) {
-    total += 250;
-  }
 
   return (
     <OrderListItemWrapper>
