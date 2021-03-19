@@ -8,7 +8,7 @@ const OrderListItemDisplayWrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   font-size: 10px;
-  width: 35%;
+  width: 30%;
   padding: 0;
   line-height: 18px;
   color: ${(props) => props.color};
