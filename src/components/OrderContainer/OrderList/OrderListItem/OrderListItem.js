@@ -13,7 +13,7 @@ const OrderListItemWrapper = styled.div`
   flex-direction: row;
   flex-wrap: wrap;
   flex-shrink: 0;
-  justify-content: space-between;
+  justify-content: flex-start;
   height: fit-content;
   align-items: center;
   background-color: #ffffff;
@@ -55,16 +55,13 @@ const OrderListItem = (props) => {
         title="Customer"
         value={`${order.customer.firstName} ${order.customer.lastName}`}
       />
-      <OrderListItemDisplay title="Type" value={type} />
-      <OrderListItemDisplay
-        title="Total"
-        value={`£${(total / 100).toFixed(2)}`}
-      />
       <OrderListItemDisplay
         title="Status"
         value={order.status}
         color={order.status === 'ACCEPTED' ? 'green' : 'black'}
       />
+      <OrderToggle id={id} open={open} toggle={setOpen} />
+      <OrderListItemDisplay title="Type" value={type} />
       <OrderListItemDisplay
         title="Fulfilment Date"
         value={
@@ -73,7 +70,6 @@ const OrderListItem = (props) => {
             : `${fulfilmentDate.toLocaleDateString()} - ${fulfilmentDate.toLocaleTimeString()}`
         }
       />
-      <OrderToggle id={id} open={open} toggle={setOpen} />
       {open ? <OrderInformation id={id} /> : null}
     </OrderListItemWrapper>
   );
