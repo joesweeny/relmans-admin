@@ -16,6 +16,7 @@ const MenuWrapper = styled.div`
   background-color: #3d604c;
   transition: transform 300ms;
   text-transform: uppercase;
+  z-index: 1500;
 
   a {
     padding-top: 10px;
